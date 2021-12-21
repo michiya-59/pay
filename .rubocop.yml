@@ -41,4 +41,4 @@ Style/Documentation:
   Enabled: false
 
 Style/EndOfLine: 
-  EnforcedStyle: crlf
+  EnforcedStyle: lf
