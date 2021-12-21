@@ -1,0 +1,32 @@
+<div class="header">
+  <div class="header_left">
+    <img src="/assets/logo.png" alt="">
+    <p class="header_left_p">Payroll<span>support</span></p>
+  </div>
+
+  <ul class="header_middle">
+    <li class="header_nav_part">
+      <%= link_to 'ホーム', '#', class: 'nav'%>
+    </li>
+    <li class="header_nav_part">
+      <%= link_to '本業収入', '#', class: 'nav'%>
+    </li>
+    <li class="header_nav_part">
+      <%= link_to '副業収入', '#', class: 'nav'%>
+    </li>
+    <li class="header_nav_part">
+      <%= link_to '経費', '#', class: 'nav'%>
+    </li>
+    
+  </ul>
+
+  <div class="header_right">
+    <%= link_to '#', class: 'header_right_left' do %>
+      <i class="fas fa-cog"></i>
+    <% end %>
+    <%= link_to '#', class: 'header_right_right' do %>
+      <i class="fas fa-sign-out-alt"></i>
+      <p class="sign_in_out">ログアウト</p>
+    <% end %>
+  </div>
+</div>
