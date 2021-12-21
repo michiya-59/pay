@@ -39,3 +39,6 @@ Layout/LineLength:
 
 Style/Documentation:
   Enabled: false
+
+Style/EndOfLine: 
+  EnforcedStyle: lf
