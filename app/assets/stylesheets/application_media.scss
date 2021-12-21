@@ -1,0 +1,22 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@media (min-width: 1200px){
+  .container {
+      width: 1354px;
+  }
+}
+@media (max-width: 1334px){
+  .sign_in_out{
+    font-size: 10px !important;
+  }
+  .header_right{
+    width: 17% !important;
+  }
+}
+@media (max-width: 800px){
+  .header_right{
+    width: 23% !important;
+  }
+}
+
