@@ -2,6 +2,6 @@
 
 Rails.application.routes.draw do
   resources :users do
-    post :user_confirm, action: :user_confirm_new, on: :collection
+    post :user_confirm, action: :user_confirm_new, on: :new
   end
 end

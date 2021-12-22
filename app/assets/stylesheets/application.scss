@@ -4,6 +4,45 @@
 $main_color: rgba(0,112,108,0.8);
 $sub_str_color: #515151;
 
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* デバックのスタイス */
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+/* デバックのスタイス終わり */
+
+// エラーメッセージスタイル
+.error_main{
+  padding: 10px;
+  border: 1px solid #ffc1c1;
+  background: #ffdddd;
+  font-size: 10px;
+  text-align: left;
+  width: 60%;
+  margin: 0px auto 13px 0;
+  border-radius: 5px;
+  p{
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    color: #8c1818;
+  }
+  li{
+    color: #8c1818;
+    list-style: none;
+  }
+}
+// エラーメッセージスタイル終わり
+
 .fas{
   color: $sub_str_color;
   margin-right: 20px;
@@ -113,7 +152,7 @@ $sub_str_color: #515151;
   display: flex;
   margin: 20px auto 0 auto;
   .step1{
-    background: $main_color;
+    background: lightgray;
     color: white;
     padding:  27px 0;
     text-align: center;
@@ -129,7 +168,7 @@ $sub_str_color: #515151;
     font-size: 18px;
     height: 78px;
     position: relative;
-    left: -23px;
+    left: -22px;
     width: 330px;
   }
   .step3{
@@ -139,7 +178,7 @@ $sub_str_color: #515151;
   .step1_triangle{
     border-top: 39px solid transparent;
     border-bottom: 39px solid transparent;
-    border-left: 25px solid $main_color;
+    border-left: 25px solid lightgray;
     height: 0px;
     width: 0px;
     position: relative;
@@ -152,7 +191,7 @@ $sub_str_color: #515151;
     height: 0px;
     width: 0px;
     position: relative;
-    left: -23px;
+    left: -22px;
     top: 20px;
   }
   /* 右の三角 */
@@ -191,6 +230,27 @@ $sub_str_color: #515151;
   margin: 0 0 30px 0;
   box-shadow: 1px 2px 6px lightgrey;
   height: 362px;
+  .login_form_detail{
+    background: lightgray;
+    margin: 0;
+    padding: 6px 22px;
+    font-weight: bold;
+    .form_span{
+      color: brown;
+      margin-left: 9px;
+    }
+  }
+}
+.entry_form2{
+  border: 1px solid #BAB6B6;
+  max-width: 1048px;
+  margin: 0 0 30px 0;
+  box-shadow: 1px 2px 6px lightgrey;
+  height: 249px;
+  .entry_form_info{
+    margin: 9px 23px;
+    font-weight: bold;
+  }
   .login_form_detail{
     background: lightgray;
     margin: 0;

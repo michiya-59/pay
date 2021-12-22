@@ -1,5 +1,5 @@
 <div class="entry_top">
-  <h2 class="step1">STEP1 入力</h2><div class="step1_triangle"></div>
+  <h2 class="step1" style="background: rgba(0,112,108,0.8);color: white;">STEP1 入力</h2><div class="step1_triangle" style="border-left: 25px solid rgba(0,112,108,0.8);"></div>
   <div class="a"></div>
   <h2 class="step2">STEP2 確認</h2><div class="step2_triangle"></div>
   <div class="a2"></div>
@@ -7,19 +7,20 @@
 </div>
 
 <p class="login_info_msg">ログインに使用する情報</p>
-<div class="entry_form">
-  <%= form_with(url: user_confirm_users_path,local: true) do |f| %>
+<%= form_with(model: @user, url: user_confirm_new_user_path, local: true) do |f| %>
+<%= render 'shared/error', object: f.object %>
+  <div class="entry_form">
     <p class="login_form_detail">氏名<span class="form_span">必須</sapn></p>
     <%= f.text_field :name, class: "form_input", :placeholder => "例)西野 倫也" %>
     <p class="login_form_detail">メールアドレス (半角英数字)<span class="form_span">必須</sapn></p>
     <%= f.text_field :email, class: "form_input", :placeholder => "例)project.mail@example.co.jp" %>
     <p class="login_form_detail">パスワード(半角英数字)<span class="form_span">必須</sapn></p>
-    <%= f.text_field :password, class: "form_input" %>
+    <%= f.password_field :password, class: "form_input" %>
     <p class="login_form_detail">パスワード確認(半角英数字)<span class="form_span">必須</sapn></p>
-    <%= f.text_field :password_confirmation, class: "form_input" %>
+    <%= f.password_field :password_confirmation, class: "form_input" %>
     <div class="entry_button_mass">
       <%= link_to '戻る', :back, class: "entry_button" %>
-      <%= f.submit "送信",class: 'entry_button1' %>
+      <%= f.submit '確認' ,class: 'entry_button1' %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
