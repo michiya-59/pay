@@ -1,0 +1,14 @@
+<h1 class="login_title">PayrollSupport</h1>
+
+
+<%= form_with(url: login_path, local: true, scope: :session, class: 'login_form') do |f| %>
+  <div class="login_part">
+    <p class="login_part_p">メールアドレス</p>
+    <%= f.text_field :email, class: 'login_filed'  %>
+  </div>
+  <div class="login_part">
+    <p class="login_part_p">パスワード</p>
+    <%= f.password_field :password, class: 'login_filed'  %>
+  </div>
+  <%= f.submit 'ログイン', class: 'login_submit' %>
+<% end %>
