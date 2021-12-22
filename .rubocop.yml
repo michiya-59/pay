@@ -42,3 +42,6 @@ Style/Documentation:
 
 Style/EndOfLine: 
   EnforcedStyle: lf
+
+GuardClause:
+  MinBodyLength: 4
