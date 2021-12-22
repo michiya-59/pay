@@ -90,3 +90,146 @@ $sub_str_color: #515151;
   }
 }
 // ヘッダーのスタイル終わり
+
+// 会員登録画面のスタイル
+.entry_title{
+  font-weight: 200;
+  color: $main_color;
+  margin: 15px 0 0 0;
+  display: flex;
+  margin: 8px 0 0 6px;
+  line-height: 15px;
+  img{
+    height: 46px;
+  }
+  .entry_title_p{
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0 0 6px;
+    line-height: 15px;
+  }
+}
+.entry_top{
+  display: flex;
+  margin: 20px auto 0 auto;
+  .step1{
+    background: $main_color;
+    color: white;
+    padding:  27px 0;
+    text-align: center;
+    font-size: 18px;
+    height: 78px;
+    width: 330px;
+  }
+  .step2, .step3{
+    background: lightgray;
+    color: white;
+    padding:  27px 0;
+    text-align: center;
+    font-size: 18px;
+    height: 78px;
+    position: relative;
+    left: -23px;
+    width: 330px;
+  }
+  .step3{
+    position: relative;
+    left: -45px;
+  }
+  .step1_triangle{
+    border-top: 39px solid transparent;
+    border-bottom: 39px solid transparent;
+    border-left: 25px solid $main_color;
+    height: 0px;
+    width: 0px;
+    position: relative;
+    top: 20px;
+  }
+  .step2_triangle{
+    border-top: 39px solid transparent;
+    border-bottom: 39px solid transparent;
+    border-left: 25px solid lightgray;
+    height: 0px;
+    width: 0px;
+    position: relative;
+    left: -23px;
+    top: 20px;
+  }
+  /* 右の三角 */
+  .a{
+    border-top: 39px solid lightgray;
+    border-bottom: 39px solid lightgray;
+    border-left: 26px solid transparent;
+    position: relative;
+    left: -22px;
+    width: 0;
+    height: 0;
+    top: 20px;
+  }
+  .a2{
+    border-top: 39px solid lightgray;
+    border-bottom: 39px solid lightgray;
+    border-left: 26px solid transparent;
+    position: relative;
+    left: -45px;
+    top: 20px;
+    width: 0;
+    height: 0;
+  }
+  /* 右の三角終わり */
+}
+.login_info_msg{
+  padding-bottom: 10px;
+  font-size: 19px;
+  border-bottom: 1px solid #BAB6B6;
+  margin: 14px 0;
+  max-width: 1048px;
+}
+.entry_form{
+  border: 1px solid #BAB6B6;
+  max-width: 1048px;
+  margin: 0 0 30px 0;
+  box-shadow: 1px 2px 6px lightgrey;
+  height: 362px;
+  .login_form_detail{
+    background: lightgray;
+    margin: 0;
+    padding: 6px 22px;
+    font-weight: bold;
+    .form_span{
+      color: brown;
+      margin-left: 9px;
+    }
+  }
+}
+.form_input{
+  margin: 10px 24px;
+  height: 22px;
+  margin-bottom: 15px;
+  width: 210px;
+}
+.entry_button{
+  margin-left: 24px;
+  border: 1px solid #D5D5D5;
+  background: white;
+  color: $main_color;
+  font-weight: 400;
+  width: 260px;
+  padding: 5px 115px;
+  &:hover{
+    text-decoration: none;
+  }
+}
+.entry_button1{
+  margin-left: 24px;
+  border: 1px solid #D5D5D5;
+  background: $main_color;
+  color: white;
+  font-weight: 400;
+  width: 260px;
+  height: 27px;
+  &:hover{
+    opacity: 0.9;
+  }
+}
+// 会員登録画面のスタイル終わり
