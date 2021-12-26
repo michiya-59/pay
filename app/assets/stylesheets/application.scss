@@ -118,6 +118,9 @@ $sub_str_color: #515151;
     }
     .header_right_right{
       display: flex;
+      background: none;
+      border: none;
+      height: 50px;
       .fas.fa-sign-out-alt{
         margin-right: 10px;
       }
