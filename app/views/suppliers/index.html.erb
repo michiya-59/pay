@@ -2,14 +2,14 @@
 
 <div class="setting_name">
     <% if @switch_line == 'main' %>
-        <%= link_to '本業の名称', '#', class: 'setting_a' %>
+        <%= link_to '本業の名称', user_suppliers_path(is_side_business: false), class: 'setting_a' %>
     <% else %>
-        <%= link_to '本業の名称', '#' %>
+        <%= link_to '本業の名称', user_suppliers_path(is_side_business: false) %>
     <% end %>
     <% if @switch_line == 'sub' %>
-        <%= link_to '副業の名称', '#', class: 'setting_a' %>
+        <%= link_to '副業の名称', user_suppliers_path(is_side_business: true), class: 'setting_a' %>
     <% else %>
-        <%= link_to '副業の名称', '#' %>
+        <%= link_to '副業の名称', user_suppliers_path(is_side_business: true) %>
     <% end %>
     <% if @switch_line == 'expenses' %>
         <%= link_to '経費の名称', '#', class: 'setting_a' %>
@@ -19,7 +19,13 @@
 </div>
 
 <div class="name_list">
-    <h1 class="bussines_title">本業名一覧</h1>
+    <h1 class="bussines_title">
+        <% if @supplier_switch == "false" %>
+            本業名一覧
+        <% else %>
+            副業名一覧
+        <% end %>
+    </h1>
     <div class="id_name top">
         <p class="id">ID</p>
         <p class="id">名称</p>

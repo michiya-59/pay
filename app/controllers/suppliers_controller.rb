@@ -3,10 +3,16 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: %i[edit suppliers_confirm_edit update]
   before_action :set_user_id
+  before_action :get_switch_bisiness
 
   def index
-    @suppliers = Supplier.all
-    @switch_line = 'main'
+    if @supplier_switch == "false" 
+      @suppliers = Supplier.where(is_side_business: "false")
+      @switch_line = 'main'
+    else
+      @suppliers = Supplier.where(is_side_business: "true")
+      @switch_line = 'sub'
+    end
   end
 
   def new
@@ -54,5 +60,9 @@ class SuppliersController < ApplicationController
 
   def set_user_id
     @user = params[:user_id]
+  end
+
+  def get_switch_bisiness
+    @supplier_switch = params[:is_side_business]
   end
 end
