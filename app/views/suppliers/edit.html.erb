@@ -1,2 +1,20 @@
-<h1>Suppliers#edit</h1>
-<p>Find me in app/views/suppliers/edit.html.erb</p>
+<h1 class="new_supplier_name">本業名 変更</h1>
+
+<div class="entry_top">
+  <h2 class="step1" style="background: rgba(0,112,108,0.8);color: white;">STEP1 入力</h2><div class="step1_triangle" style="border-left: 25px solid rgba(0,112,108,0.8);"></div>
+  <div class="a"></div>
+  <h2 class="step2">STEP2 確認</h2><div class="step2_triangle"></div>
+  <div class="a2"></div>
+  <h2 class="step3">STEP3 完了</h2>
+</div>
+
+<%= form_with(url: suppliers_confirm_edit_user_supplier_path(@user,@supplier),local: true) do |f| %>
+  <div class="entry_form_supplier">
+    <p class="login_form_detail">本業名称<span class="form_span">必須</sapn></p>
+    <%= f.text_field :name, class: "form_input", :placeholder => "例)コンビニ", :value => @supplier.name %>
+    <div class="entry_button_mass">
+      <%= link_to '戻る', :back, class: "entry_button" %>
+      <%= f.submit '確認' ,class: 'entry_button1' %>
+    </div>
+  </div>
+<% end %>
