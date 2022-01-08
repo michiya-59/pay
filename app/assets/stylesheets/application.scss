@@ -20,6 +20,21 @@ $sub_str_color: #515151;
 }
 /* デバックのスタイス終わり */
 
+// flashメッセージスタイル
+  .success_dsn{
+    text-align: center;
+    background: $main_color;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    border: 1px solid #e7e7e7;
+    opacity: 0.8;
+  }
+// flashメッセージスタイル終わり
+
 // エラーメッセージスタイル
 .error_main{
   padding: 10px;
@@ -118,6 +133,9 @@ $sub_str_color: #515151;
     }
     .header_right_right{
       display: flex;
+      background: none;
+      border: none;
+      height: 50px;
       .fas.fa-sign-out-alt{
         margin-right: 10px;
       }
@@ -126,6 +144,13 @@ $sub_str_color: #515151;
         color: $sub_str_color;
       }
     }
+  }
+}
+
+.none{
+  opacity: 0.4;
+  &:hover{
+    border-bottom: none !important;
   }
 }
 // ヘッダーのスタイル終わり
@@ -372,4 +397,142 @@ $sub_str_color: #515151;
   color: #FFFFFF;
   border: 1px solid $main_color;
 }
+
+.entry_link{
+  font-size: 15px;
+  text-align: center;
+  margin-top: 20px;
+  .login_link{
+    font-weight: bold;
+    color: #4aa5b4;
+  }
+}
+
+.login_part_end{
+  margin: 0px auto;
+  display: flex;
+  width: 180px;
+  .login_remember{
+    color: #5f5f5f;
+    margin-right: 10px;
+  }
+}
 // ログイン画面のスタイル終わり
+
+// 設定画面のスタイル
+.setting_title{
+  font-family: monospace;
+  font-weight: bold;
+  opacity: 0.3;
+  font-size: 40px;
+}
+.setting_name{
+  margin-top: 30px;
+  a{
+    display: inline-block;
+    font-size: 20px;
+    color: #565a5e;
+    width: 120px;
+    text-align: center;
+    &:hover{
+      text-decoration: none;
+      border-bottom: 3px solid $main_color;
+    }
+  }
+  .setting_a{
+    border-bottom: 3px solid $main_color;
+  }
+}
+
+.bussines_title{
+  margin: 50px 0 35px 0;
+  font-family: monospace;
+}
+
+.id_name{
+  display: flex;
+  border-bottom: 1px solid #ababab;
+  width: 100%;
+  padding: 0 14px;
+  margin-top: 10px;
+  p:first-child{
+    width: 14%;
+  }
+  .id{
+    width: 30%;
+  }
+  .supplier_new{
+    margin: 6px 0 0 auto;
+    text-align: right;
+    line-height: 22px;
+    padding: 0 17px;
+    font-size: 11px;
+    height: 26px;
+    border-radius: 5px;
+    color: #4E342E;
+    background: #FDD835;
+    border: 2px solid #FBC02D;
+    border-top: 2px solid #FFEB3B;
+    border-left: 2px solid #FFEB3B;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  .edit_btn{
+    line-height: 20px;
+    font-weight: bold;
+    padding: 0 28px;
+    height: 22px;
+    margin: 0 0 0 auto;
+  }
+}
+.top{
+  background-color: #a3a3a385;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+}
+
+.not_supplier{
+  margin: 15px 0 0 0;
+  width: 45%;
+  text-align: center;
+  font-size: 15px;
+  font-family: monospace;
+}
+
+//設定画面新規登録のスタイル
+.new_supplier_name{
+  font-size: 40px;
+  margin: 40px 0 0 0;
+  font-weight: bold;
+  opacity: 0.3;
+  font-family: monospace;
+}
+
+.entry_form_supplier{
+  border: 1px solid #BAB6B6;
+  max-width: 1048px;
+  margin: 0 0 30px 0;
+  box-shadow: 1px 2px 6px lightgrey;
+  height: 125px;
+  margin-top: 10px;
+  .login_form_detail{
+    background: lightgray;
+    margin: 0;
+    padding: 6px 22px;
+    font-weight: bold;
+    .form_span{
+      color: brown;
+      margin-left: 9px;
+    }
+  }
+
+  .entry_form_info{
+    font-weight: bold;
+    margin: 14px 0px 13px 23px;
+  }
+}
+//設定画面新規登録のスタイル終わり
+
+// 設定画面のスタイル終了

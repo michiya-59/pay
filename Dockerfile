@@ -12,7 +12,6 @@ WORKDIR /pay
 COPY Gemfile /pay/Gemfile
 COPY Gemfile.lock /pay/Gemfile.lock
 RUN bundle install
-RUN gem install rails
 COPY . /pay
 
 COPY entrypoint.sh /usr/bin/

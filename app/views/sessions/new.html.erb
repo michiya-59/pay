@@ -10,5 +10,16 @@
     <p class="login_part_p">パスワード</p>
     <%= f.password_field :password, class: 'login_filed'  %>
   </div>
+  <div class="login_part_end">
+    <p class="login_remember">ログインしたままにする</p>
+    <%= f.check_box :remember, class: 'login_check' %>
+  </div>
+  
   <%= f.submit 'ログイン', class: 'login_submit' %>
 <% end %>
+
+<p class="entry_link">
+  会員登録がまだの方は
+  <%= link_to 'こちら', new_user_path, class: 'login_link' %>
+  まで
+</p>
