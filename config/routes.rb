@@ -16,6 +16,11 @@ Rails.application.routes.draw do
       end
     end
     post :user_confirm, action: :user_confirm_new, on: :new
-    resources :expense_categories
+    resources :expense_categories do
+      post :expense_categories_confirm, action: :expense_categories_confirm_new, on: :new
+      member do
+        post :expense_categories_confirm_edit, action: :expense_categories_confirm_edit
+      end
+    end
   end
 end
