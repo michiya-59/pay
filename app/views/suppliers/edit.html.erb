@@ -8,7 +8,7 @@
   <h2 class="step3">STEP3 完了</h2>
 </div>
 
-<%= form_with(url: suppliers_confirm_edit_user_supplier_path(@user,@supplier),local: true) do |f| %>
+<%= form_with(url: suppliers_confirm_edit_user_supplier_path(@current_user,@supplier),local: true) do |f| %>
   <div class="entry_form_supplier">
     <p class="login_form_detail">本業名称<span class="form_span">必須</sapn></p>
     <%= f.text_field :name, class: "form_input", :placeholder => "例)コンビニ", :value => @supplier.name %>

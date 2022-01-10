@@ -1,0 +1,21 @@
+<div class="entry_top">
+  <h2 class="step1">STEP1 入力</h2><div class="step1_triangle"></div>
+  <div class="a" style="border-top: 39px solid rgba(0,112,108,0.8);border-bottom: 39px solid rgba(0,112,108,0.8);"></div>
+  <h2 class="step2"  style="background: rgba(0,112,108,0.8);color: white;">STEP2 確認</h2><div class="step2_triangle" style="border-left: 25px solid rgba(0,112,108,0.8);"></div>
+  <div class="a2"></div>
+  <h2 class="step3">STEP3 完了</h2>
+</div>
+
+<p class="login_info_msg">確認情報</p>
+<%= form_with(model: @expense, url: user_expense_category_path, local: true) do |f| %>
+  <div class="entry_form_supplier">
+    <p class="login_form_detail">経費名称<span class="form_span">必須</sapn></p>
+    <p class="entry_form_info"><%= @expense_name %></p>
+    <%= f.hidden_field :name, :value => @expense_name %>
+    <%= f.hidden_field :user_id, :value => @current_user %>
+    <div class="entry_button_mass">
+      <%= link_to '戻る', :back, class: "entry_button" %>
+      <%= f.submit '送信' ,class: 'entry_button1' %>
+    </div>
+  </div>
+<% end %>
