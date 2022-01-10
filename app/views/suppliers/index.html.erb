@@ -2,14 +2,14 @@
 
 <div class="setting_name">
     <% if @switch_line == 'main' %>
-        <%= link_to '本業の名称', user_suppliers_path(is_side_business: false), class: 'setting_a' %>
+        <%= link_to '本業の名称', suppliers_path(is_side_business: false), class: 'setting_a' %>
     <% else %>
-        <%= link_to '本業の名称', user_suppliers_path(is_side_business: false) %>
+        <%= link_to '本業の名称', suppliers_path(is_side_business: false) %>
     <% end %>
     <% if @switch_line == 'sub' %>
-        <%= link_to '副業の名称', user_suppliers_path(is_side_business: true), class: 'setting_a' %>
+        <%= link_to '副業の名称', suppliers_path(is_side_business: true), class: 'setting_a' %>
     <% else %>
-        <%= link_to '副業の名称', user_suppliers_path(is_side_business: true) %>
+        <%= link_to '副業の名称', suppliers_path(is_side_business: true) %>
     <% end %>
     <% if @switch_line == 'expenses' %>
         <%= link_to '経費の名称', '#', class: 'setting_a' %>
@@ -29,17 +29,32 @@
     <div class="id_name top">
         <p class="id">ID</p>
         <p class="id">名称</p>
-        <%= link_to '新規追加', new_user_supplier_path, class: 'supplier_new' %>
+        <%= link_to '新規追加', new_user_supplier_path(@current_user), class: 'supplier_new' %>
     </div>
-    <% if @suppliers.present?%>
-        <% @suppliers.each do |supplier| %>
-            <div class="id_name">
-                <p class="id"><%= supplier.id %></p>
-                <p class="id"><%= supplier.name %></p>
-                <%= link_to '編集', edit_user_supplier_path(@user,supplier), class: 'supplier_new edit_btn' %>
-            </div>
+    
+    <% if @supplier_switch == "false" %>
+        <% if @suppliers_main.present? %>
+            <% @suppliers_main.each do |supplier| %>
+                <div class="id_name">
+                    <p class="id"><%= supplier.id %></p>
+                    <p class="id"><%= supplier.name %></p>
+                    <%= link_to '編集', edit_user_supplier_path(@current_user,supplier), class: 'supplier_new edit_btn' %>
+                </div>
+            <% end %>
+        <% else %>
+            <p class="not_supplier">まだ本業名が登録されてません</p>
         <% end %>
     <% else %>
-        <p class="not_supplier">まだ本業名が登録されてません</p>
+        <% if @suppliers_sub.present? %>
+            <% @suppliers_sub.each do |supplier| %>
+                <div class="id_name">
+                    <p class="id"><%= supplier.id %></p>
+                    <p class="id"><%= supplier.name %></p>
+                    <%= link_to '編集', edit_user_supplier_path(@current_user,supplier), class: 'supplier_new edit_btn' %>
+                </div>
+            <% end %>
+        <% else %>
+            <p class="not_supplier">まだ副業名が登録されてません</p>
+        <% end %>
     <% end %>
 </div>

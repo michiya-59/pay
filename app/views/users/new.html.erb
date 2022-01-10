@@ -19,7 +19,7 @@
     <p class="login_form_detail">パスワード確認(半角英数字)<span class="form_span">必須</sapn></p>
     <%= f.password_field :password_confirmation, class: "form_input" %>
     <div class="entry_button_mass">
-      <%= link_to '戻る', :back, class: "entry_button" %>
+      <%= link_to '戻る', login_path, class: "entry_button" %>
       <%= f.submit '確認' ,class: 'entry_button1' %>
     </div>
   </div>

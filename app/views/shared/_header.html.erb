@@ -44,7 +44,7 @@
   </ul>
 
   <div class="header_right">
-    <%= link_to user_suppliers_path, class: 'header_right_left' do %>
+    <%= link_to suppliers_path(is_side_business: false), class: 'header_right_left' do %>
       <i class="fas fa-cog"></i>
     <% end %>
     <% if logged_in? %>
