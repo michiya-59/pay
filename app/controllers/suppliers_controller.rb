@@ -3,10 +3,16 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: %i[edit suppliers_confirm_edit update]
   before_action :set_user_id
+  before_action :get_switch_bisiness
 
   def index
-    @suppliers = Supplier.all
-    @switch_line = 'main'
+    if @supplier_switch == 'false'
+      @suppliers_main = Supplier.where(user_id: @current_user, is_side_business: false).order(id: 'ASC')
+      @switch_line = 'main'
+    else
+      @suppliers_sub = Supplier.where(user_id: @current_user, is_side_business: true).order(id: 'ASC')
+      @switch_line = 'sub'
+    end
   end
 
   def new
@@ -21,7 +27,7 @@ class SuppliersController < ApplicationController
   def create
     @supplier = Supplier.new(set_supplier_params)
     if @supplier.save
-      redirect_to user_suppliers_url
+      redirect_to suppliers_path(is_side_business: false)
       flash[:success] = '登録完了しました'
     else
       render 'new'
@@ -38,7 +44,7 @@ class SuppliersController < ApplicationController
 
   def update
     @supplier.update(set_supplier_params)
-    redirect_to user_suppliers_url
+    redirect_to suppliers_path(is_side_business: false)
     flash[:success] = '編集完了しました'
   end
 
@@ -49,10 +55,14 @@ class SuppliersController < ApplicationController
   end
 
   def set_supplier
-    @supplier = Supplier.find(params[:id])
+    @supplier = Supplier.find_by(id: @current_user)
   end
 
   def set_user_id
     @user = params[:user_id]
+  end
+
+  def get_switch_bisiness
+    @supplier_switch = params[:is_side_business]
   end
 end

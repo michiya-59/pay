@@ -47,3 +47,11 @@ Style/EndOfLine:
 
 GuardClause:
   MinBodyLength: 4
+
+# メソッドの接頭辞にget_とかset_とかつけないルール
+# すでにつけっちゃってて面倒とかだとfalseにする
+Naming/AccessorMethodName:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 50
