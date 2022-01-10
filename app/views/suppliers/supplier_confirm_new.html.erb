@@ -13,7 +13,7 @@
     <p class="entry_form_info"><%= @supplier.name %></p>
     <%= f.hidden_field :name %>
     <%= f.hidden_field :user_id, :value => @current_user.id %>
-    <%= f.hidden_field :is_side_business, :value => true %>
+      <%= f.hidden_field :is_side_business %>
     <div class="entry_button_mass">
       <%= link_to '戻る', :back, class: "entry_button" %>
       <%= f.submit '送信' ,class: 'entry_button1' %>

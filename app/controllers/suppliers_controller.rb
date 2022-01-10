@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SuppliersController < ApplicationController
-  before_action :set_supplier, only: %i[edit suppliers_confirm_edit update]
+  before_action :set_supplier, only: %i[edit suppliers_confirm_edit update destroy]
   before_action :get_switch_bisiness
 
   def index
@@ -37,6 +37,12 @@ class SuppliersController < ApplicationController
 
   def edit; end
 
+  def destroy
+    @supplier.destroy
+    redirect_to suppliers_url(is_side_business: @supplier_switch)
+    flash[:success] = '削除しました'
+  end
+
   def suppliers_confirm_edit
     @supplier_name = params[:name]
   end
@@ -54,7 +60,7 @@ class SuppliersController < ApplicationController
   end
 
   def set_supplier
-    @supplier = Supplier.find_by(id: @current_user)
+    @supplier = Supplier.find(params[:id])
   end
 
   def get_switch_bisiness
