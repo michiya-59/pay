@@ -1,23 +1,5 @@
 <h1 class="setting_title">設定画面</h1>
-
-<div class="setting_name">
-    <% if @switch_line == 'main' %>
-        <%= link_to '本業の名称', suppliers_path(is_side_business: false), class: 'setting_a' %>
-    <% else %>
-        <%= link_to '本業の名称', suppliers_path(is_side_business: false) %>
-    <% end %>
-    <% if @switch_line == 'sub' %>
-        <%= link_to '副業の名称', suppliers_path(is_side_business: true), class: 'setting_a' %>
-    <% else %>
-        <%= link_to '副業の名称', suppliers_path(is_side_business: true) %>
-    <% end %>
-    <% if @switch_line == 'expenses' %>
-        <%= link_to '経費の名称', user_expense_categories_path(@current_user), class: 'setting_a' %>
-    <% else %>
-        <%= link_to '経費の名称', user_expense_categories_path(@current_user) %>
-    <% end %>
-</div>
-
+<%= render 'shared/setting_nav_menu' %>
 <div class="name_list">
     <h1 class="bussines_title">
         <% if @supplier_switch == "false" %>
@@ -29,7 +11,7 @@
     <div class="id_name top">
         <p class="id">ID</p>
         <p class="id">名称</p>
-        <%= link_to '新規追加', new_user_supplier_path(@current_user), class: 'supplier_new' %>
+        <%= link_to '新規追加', new_user_supplier_path(@current_user, is_side_business: @supplier_switch), class: 'supplier_new' %>
     </div>
     
     <% if @supplier_switch == "false" %>
@@ -38,6 +20,11 @@
                 <div class="id_name">
                     <p class="id"><%= supplier.id %></p>
                     <p class="id"><%= supplier.name %></p>
+                    <div class="destroy_btn">
+                        <%= button_to user_supplier_path(@current_user,supplier), method: :delete, class: 'supplier_new delete_btn'  do %>
+                            <span class="sign_in_out">削除</span>
+                        <% end %>
+                    </div>
                     <%= link_to '編集', edit_user_supplier_path(@current_user,supplier), class: 'supplier_new edit_btn' %>
                 </div>
             <% end %>
@@ -50,6 +37,11 @@
                 <div class="id_name">
                     <p class="id"><%= supplier.id %></p>
                     <p class="id"><%= supplier.name %></p>
+                    <div class="destroy_btn">
+                        <%= button_to user_supplier_path(@current_user,supplier), method: :delete, class: 'supplier_new delete_btn'  do %>
+                            <span class="sign_in_out">削除</span>
+                        <% end %>
+                    </div>
                     <%= link_to '編集', edit_user_supplier_path(@current_user,supplier), class: 'supplier_new edit_btn' %>
                 </div>
             <% end %>
