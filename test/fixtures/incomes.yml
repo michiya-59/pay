@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  month: 1
+  price: MyString
+  supplier_id: 1
+  user_id: 1
+  is_side_business: false
+
+two:
+  month: 1
+  price: MyString
+  supplier_id: 1
+  user_id: 1
+  is_side_business: false

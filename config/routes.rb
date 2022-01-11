@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'incomes/index'
+  get 'incomes/new'
+  get 'incomes/create'
+  get 'incomes/edit'
+  get 'incomes/destroy'
+  get 'incomes/show'
   root 'sessions#new'
 
   get '/login', to: 'sessions#new'
