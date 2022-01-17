@@ -1,6 +1,6 @@
 <div class="header">
   <% if logged_in? %>
-    <%= link_to root_path, class: "header_left" do %>
+    <%= link_to "#", class: "header_left" do %>
       <img src="/assets/logo.png" alt="">
       <p class="header_left_p">Payroll<span>support</span></p>
     <% end %>
@@ -14,21 +14,21 @@
   <ul class="header_middle">
     <li class="header_nav_part">
       <% if logged_in? %>
-        <%= link_to 'ホーム', root_path, class: 'nav'%>
+        <%= link_to 'ホーム', "#", class: 'nav'%>
       <% else %>
         <span class="nav none">ホーム</span>
       <% end %>
     </li>
     <li class="header_nav_part">
       <% if logged_in? %>
-        <%= link_to '本業収入', '#', class: 'nav'%>
+        <%= link_to '本業収入',user_incomes_path(current_user, is_side_business: false), class: 'nav' %>
       <% else %>
         <span class="nav none">本業収入</span>
       <% end %>
     </li>
     <li class="header_nav_part">
       <% if logged_in? %>
-        <%= link_to '副業収入', '#', class: 'nav'%>
+        <%= link_to '副業収入', user_incomes_path(current_user, is_side_business: true), class: 'nav'%>
       <% else %>
         <span class="nav none">副業収入</span>
       <% end %>

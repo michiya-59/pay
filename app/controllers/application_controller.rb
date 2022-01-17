@@ -2,9 +2,14 @@
 
 class ApplicationController < ActionController::Base
   include(SessionsHelper)
-  before_action :set_current_user
+  before_action :now_time_get
 
-  def set_current_user
-    @current_user = User.find_by(id: session[:user_id])
+  def redirect_when_no_logged_in
+    return if current_user
+    redirect_to login_path
+  end
+
+  def now_time_get
+    @now_yaer = Date.today.strftime('%Y')
   end
 end

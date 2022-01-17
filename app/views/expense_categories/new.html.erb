@@ -13,7 +13,7 @@
   <div class="entry_form_supplier">
     <p class="login_form_detail">経費名称<span class="form_span">必須</sapn></p>
     <%= f.text_field :name, class: "form_input", :placeholder => "例)仕入れ費" %>
-    <%= f.hidden_field :user_id, :value => @current_user.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
     <div class="entry_button_mass">
       <%= link_to '戻る', :back, class: "entry_button" %>
       <%= f.submit '確認' ,class: 'entry_button1' %>

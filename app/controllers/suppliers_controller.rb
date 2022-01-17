@@ -3,13 +3,14 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: %i[edit suppliers_confirm_edit update destroy]
   before_action :get_switch_bisiness
+  before_action :redirect_when_no_logged_in
 
   def index
     if @supplier_switch == 'false'
-      @suppliers_main = Supplier.where(user_id: @current_user, is_side_business: false).order(id: 'ASC')
+      @suppliers_main = Supplier.where(user_id: current_user, is_side_business: false).order(id: 'ASC')
       @switch_line = 'main'
     else
-      @suppliers_sub = Supplier.where(user_id: @current_user, is_side_business: true).order(id: 'ASC')
+      @suppliers_sub = Supplier.where(user_id: current_user, is_side_business: true).order(id: 'ASC')
       @switch_line = 'sub'
     end
   end

@@ -12,7 +12,7 @@
     <p class="login_form_detail">本業名称<span class="form_span">必須</sapn></p>
     <p class="entry_form_info"><%= @supplier_name %></p>
     <%= f.hidden_field :name, :value => @supplier_name %>
-    <%= f.hidden_field :user_id, :value => @current_user.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
     <% if @supplier_switch == 'false' %>
       <%= f.hidden_field :is_side_business, :value => false %>
     <% else %>

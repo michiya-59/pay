@@ -79,3 +79,4 @@ group :test do
 end
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'jquery-rails'
+gem 'yen'

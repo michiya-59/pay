@@ -4,6 +4,10 @@
 $main_color: rgba(0,112,108,0.8);
 $sub_str_color: #515151;
 
+body{
+  font-family: 'Mochiy Pop P One', sans-serif;
+}
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -28,8 +32,7 @@ $sub_str_color: #515151;
     border-radius: 5px;
     margin: 10px 0;
     color: white;
-    font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
     border: 1px solid #e7e7e7;
     opacity: 0.8;
   }
@@ -55,6 +58,19 @@ $sub_str_color: #515151;
     color: #8c1818;
     list-style: none;
   }
+}
+
+.error_content{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.part_error{
+  color: #8c1818;
+  margin: 0;
+  position: relative;
+  top: 20px;
 }
 // エラーメッセージスタイル終わり
 
@@ -471,6 +487,7 @@ $sub_str_color: #515151;
     padding: 0 17px;
     font-size: 11px;
     height: 26px;
+    font-weight: 100;
     border-radius: 5px;
     color: #4E342E;
     background: #FDD835;
@@ -483,7 +500,7 @@ $sub_str_color: #515151;
   }
   .delete_btn{
     line-height: 20px;
-    font-weight: bold;
+    font-weight: 100;
     padding: 0 28px;
     height: 22px;
     margin: 0 0 0 auto;
@@ -491,10 +508,11 @@ $sub_str_color: #515151;
 
   .edit_btn{
     line-height: 20px;
-    font-weight: bold;
+    font-weight: 100;
     padding: 0 28px;
     height: 22px;
     margin: 0 0 0 6px;
+
   }
 }
 .top{
@@ -551,3 +569,87 @@ $sub_str_color: #515151;
 //設定画面新規登録のスタイル終わり
 
 // 設定画面のスタイル終了
+
+// 本業収入画面のスタイル
+.main_income{
+  display: flex;
+  margin-top: 20px;
+}
+
+.fa-dollar-sign{
+  margin-right: 8px;
+  line-height: 33px;
+  font-size: 27px;
+}
+
+.main_income_title{
+  font-size: 22px;
+}
+
+.income_content_main{
+  display: flex;
+}
+
+// 四角のスタイルの部品化
+.income_content, .income_year, .tax_dependents{
+  height: auto;
+  width: 27%;
+  margin-top: 30px;
+  margin-right: 26px;
+  text-align: center;
+  border: 1px solid #d5d5d5;
+  box-shadow: 1px 2px 8px #d2d2d2;
+  .business_form{
+    padding: 19px 20px;
+  }
+}
+#income_month{
+  margin-right: 20px;
+}
+
+// ＄マークとタイトルがあるところのスタイルの部品化
+.business_title{
+  padding: 15px 10% 0 20%;
+  border-bottom: 1px solid gray;
+  display: flex;
+  background: $main_color;
+  width: 100%;
+  .fa-dollar-sign{
+    width: 35px;
+    border-radius: 50%;
+    background: white;
+    height: 34px;
+    color: $main_color;
+  }
+  h1{
+    font-size: 25px;
+    margin: 0 0 17px 0;
+    color: white;
+  }
+}
+
+.business_bottom{
+  margin: 10px 0;
+  #income_price{
+    width: 36%;
+    margin-right: 5px;
+  }
+  .business_submit{
+    margin-left: 16px;
+  }
+}
+
+.year_income{
+  margin: 30px 0;
+  font-size: 30px;
+}
+
+.huyou_p{
+  margin: 20px 0 0 0;
+}
+
+.huyou_price{
+  margin: 10px 0 0 0;
+}
+// 本業収入画面のスタイル終了
+

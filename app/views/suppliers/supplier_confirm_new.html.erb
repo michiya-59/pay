@@ -7,12 +7,12 @@
 </div>
 
 <p class="login_info_msg">確認情報</p>
-<%= form_with(model: @supplier, url: user_suppliers_path(@current_user.id) , local: true) do |f| %>
+<%= form_with(model: @supplier, url: user_suppliers_path(current_user.id) , local: true) do |f| %>
   <div class="entry_form_supplier">
     <p class="login_form_detail">本業名称<span class="form_span">必須</sapn></p>
     <p class="entry_form_info"><%= @supplier.name %></p>
     <%= f.hidden_field :name %>
-    <%= f.hidden_field :user_id, :value => @current_user.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :is_side_business %>
     <div class="entry_button_mass">
       <%= link_to '戻る', :back, class: "entry_button" %>
