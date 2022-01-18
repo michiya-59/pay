@@ -673,11 +673,11 @@ body{
   width: 22.2%;
   padding: 0 18px;
   .month{
-    width: 39%;
+    width: 31%;
   }
   .income_info{
     display: flex;
-    width: 160px;
+    width: 186px;
     .income{
       width: 52%;
       margin: 4px 0 0 0;
@@ -685,6 +685,16 @@ body{
     .income_detail{
       margin: 0 0 10px 12px;
     }
+  }
+}
+
+.month_income_total{
+  display: flex;
+  width: 28%;
+  padding: 5px 18px;
+  font-size: 20px;
+  .total{
+    width: 29%;
   }
 }
 // 本業収入画面のスタイル終了
