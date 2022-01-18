@@ -480,24 +480,6 @@ body{
   .id{
     width: 30%;
   }
-  .supplier_new{
-    margin: 6px 0 0 auto;
-    text-align: right;
-    line-height: 22px;
-    padding: 0 17px;
-    font-size: 11px;
-    height: 26px;
-    font-weight: 100;
-    border-radius: 5px;
-    color: #4E342E;
-    background: #FDD835;
-    border: 2px solid #FBC02D;
-    border-top: 2px solid #FFEB3B;
-    border-left: 2px solid #FFEB3B;
-    &:hover{
-      text-decoration: none;
-    }
-  }
   .delete_btn{
     line-height: 20px;
     font-weight: 100;
@@ -515,6 +497,26 @@ body{
 
   }
 }
+
+.supplier_new, .income_detail{
+  margin: 6px 0 0 auto;
+  text-align: right;
+  line-height: 22px;
+  padding: 0 17px;
+  font-size: 11px;
+  height: 26px;
+  font-weight: 100;
+  border-radius: 5px;
+  color: #4E342E;
+  background: #FDD835;
+  border: 2px solid #FBC02D;
+  border-top: 2px solid #FFEB3B;
+  border-left: 2px solid #FFEB3B;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
 .top{
   background-color: #a3a3a385;
   height: 40px;
@@ -586,7 +588,7 @@ body{
   font-size: 22px;
 }
 
-.income_content_main{
+.income_content_main_top{
   display: flex;
 }
 
@@ -650,6 +652,40 @@ body{
 
 .huyou_price{
   margin: 10px 0 0 0;
+}
+
+.monthly_income_header{
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  margin: 35px 0 5px 0;
+  width: 22%;
+  padding: 5px 18px;
+  font-size: 20px;
+  .month{
+    width: 56%;
+  }
+}
+
+.month_part_income_tr{
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  margin: 10px 0 5px 0;
+  width: 22.2%;
+  padding: 0 18px;
+  .month{
+    width: 39%;
+  }
+  .income_info{
+    display: flex;
+    width: 160px;
+    .income{
+      width: 52%;
+      margin: 4px 0 0 0;
+    }
+    .income_detail{
+      margin: 0 0 10px 12px;
+    }
+  }
 }
 // 本業収入画面のスタイル終了
 

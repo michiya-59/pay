@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Income < ApplicationRecord
   require 'nkf'
   belongs_to :supplier
@@ -12,7 +14,7 @@ class Income < ApplicationRecord
   validates :user_id, presence: true
 
   def conversion
-    self.new_price = NKF.nkf('-w -Z4', self.price)
+    self.new_price = NKF.nkf('-w -Z4', price)
     update_attribute(:price, new_price)
   end
 end

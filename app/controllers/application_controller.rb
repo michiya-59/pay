@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_when_no_logged_in
     return if current_user
+
     redirect_to login_path
   end
 

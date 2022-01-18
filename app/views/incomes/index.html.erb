@@ -23,7 +23,7 @@
   </ul>
 <% end %>
 
-<div class="income_content_main">
+<div class="income_content_main_top">
   <div class="income_content">
     <div class="business_title">
       <i class="fas fa-dollar-sign"></i>
@@ -69,5 +69,34 @@
     </div>
     <p class="huyou_p">扶養が超えるまで残り</p>
     <h3 class="huyou_price"><%= tax_calculation(@income_main_price_all).to_j %>円</h3>
+  </div>
+</div>
+
+<div class="income_content_main_bottom">
+  <div class="monthly_income">
+    <div class="monthly_income_header">
+      <p class="month">月</p>
+      <p class="income">収入</p>
+    </div>
+
+    <% month_array.each do |month| %>
+      <div class="month_part_income_tr">
+        <p class="month"><%= month %>月</p>
+        <% @monthly_income.each do |income_month,income| %>
+          <% if month == income_month[1] %>
+            <div class="income_info">
+              <p class="income"><%= income %>円</p>
+              <%= link_to '詳細', "#", class: 'income_detail' %>
+            </div>
+            <% break %>
+          <% else %>
+            <p id="income_none"></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="graph_income">
+  
   </div>
 </div>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IncomesController < ApplicationController
   before_action :get_switch_bisiness
   before_action :redirect_when_no_logged_in
@@ -6,31 +8,27 @@ class IncomesController < ApplicationController
     @income = Income.new
     @suppliers = Supplier.where(user_id: current_user.id, is_side_business: @supplier_switch)
     @income_main_price_all = Income.where(user_id: current_user.id, is_side_business: @supplier_switch).group(:month).sum(:price)
+    @monthly_income = Income.where(user_id: current_user.id, is_side_business: @supplier_switch).group(:year).group(:month).sum(:price)
   end
 
-  def new
-  end
+  def new; end
 
   def create
     @suppliers = Supplier.where(user_id: current_user.id, is_side_business: @supplier_switch)
     @income = Income.new(set_income_params.merge(set_income_params_supplier))
+    redirect_to user_incomes_path(current_user, is_side_business: false)
     if @income.save
-      redirect_to user_incomes_path(current_user, is_side_business: false)
-      flash[:success] = "本業収入を登録しました"
+      flash[:success] = '本業収入を登録しました'
     else
-      redirect_to user_incomes_path(current_user, is_side_business: false)
       flash[:error] = @income.errors.full_messages
     end
   end
 
-  def edit
-  end
+  def edit; end
 
-  def destroy
-  end
+  def destroy; end
 
-  def show
-  end
+  def show; end
 
   private
 
