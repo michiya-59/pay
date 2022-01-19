@@ -2,13 +2,14 @@
 
 class IncomesController < ApplicationController
   before_action :get_switch_bisiness
+  before_action :total_income
   before_action :redirect_when_no_logged_in
 
   def index
     @income = Income.new
     @suppliers = Supplier.where(user_id: current_user.id, is_side_business: @supplier_switch)
-    @income_main_price_all = Income.where(user_id: current_user.id, is_side_business: @supplier_switch).group(:month).sum(:price)
-    @monthly_income = Income.where(user_id: current_user.id, is_side_business: @supplier_switch).group(:year).group(:month).sum(:price)
+    @income_main_price_all = @incomes.group(:month).sum(:price)
+    @monthly_income = @incomes.group(:year).group(:month).sum(:price)
   end
 
   def new; end
@@ -40,6 +41,15 @@ class IncomesController < ApplicationController
 
   def show; end
 
+  def shows 
+    @month = params[:month]
+    @year = params[:year]
+    @supplier_business = params[:is_side_business]
+
+    @monthly_incomes = Income.where(user_id: current_user.id, is_side_business: @supplier_business, year: @year, month: @month)
+    
+  end
+
   private
 
   def set_income_params
@@ -52,5 +62,9 @@ class IncomesController < ApplicationController
 
   def get_switch_bisiness
     @supplier_switch = params[:is_side_business]
+  end
+
+  def total_income
+    @incomes = Income.where(user_id: current_user.id, is_side_business: @supplier_switch)
   end
 end

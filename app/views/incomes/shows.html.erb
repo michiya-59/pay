@@ -1,0 +1,28 @@
+<div class="main_income">
+  <i class="fas fa-dollar-sign"></i>
+  <p class="main_income_title">
+    <%= supplier_which?(@supplier_business) %> <%= @month %>月収入
+  </p>
+</div>
+
+<div class="income_content_main_top">
+  <div class="income_year">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1><%= @month %>月収入</h1>
+    </div>
+    <h1 class="year_income income_part_h1">
+      <%= @monthly_incomes.sum(:price).to_j %>円
+    </h1>
+  </div>
+
+  <div class="income_year">
+    <div class="business_title part">
+      <i class="fas fa-dollar-sign"></i>
+      <h1 class="ration_income">年間収入に対しての割合</h1>
+    </div>
+    <h1 class="year_income">
+      <%= ration_to_the_whole(@monthly_incomes.sum(:price), @incomes.sum(:price)) %>%
+    </h1>
+  </div>
+</div>

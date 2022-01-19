@@ -3,10 +3,10 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
-  config.web_console.whitelisted_ips = '172.22.0.1'
-  config.web_console.whitelisted_ips = '172.24.0.1'
-  config.web_console.whitelisted_ips = '172.25.0.1'
-  config.web_console.whitelisted_ips = '172.28.0.1'
+  # config.web_console.whitelisted_ips = '172.22.0.1'
+  # config.web_console.whitelisted_ips = '172.24.0.1'
+  # config.web_console.whitelisted_ips = '172.25.0.1'
+  # config.web_console.whitelisted_ips = '172.28.0.1'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -73,4 +73,5 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  config.reload_classes_only_on_change = false
 end

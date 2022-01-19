@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module IncomesHelper
-  require 'date'
-  date = Time.zone.today.strftime('%Y')
   def add_units(str)
     # insertは破壊的なメソッドなので元の文字列が変化しないようにコピー
     dup_str = str.dup
@@ -14,7 +12,11 @@ module IncomesHelper
   end
 
   def month_array
-    month_arrays = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    return  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  end
+
+  def now_date_year
+    Time.zone.today.strftime('%Y')
   end
 
   # ハッシュ値からvaluesの値段を一つずつ取り出し,合計を求めているメソッド
@@ -53,12 +55,12 @@ module IncomesHelper
           elsif monthly_income.present?
             hash[[monthly_income.keys[0][0], i]] = '0'
           else
-            hash[[date, i]] = '0'
+            hash[[now_date_year, i]] = '0'
           end
         elsif monthly_income.present?
           hash[[monthly_income.keys[0][0], i]] = '0'
         else
-          hash[[date, i]] = '0'
+          hash[[now_date_year, i]] = '0'
         end
       when 'graph'
         if keys < count
@@ -68,16 +70,22 @@ module IncomesHelper
           elsif monthly_income.present?
             hash[["#{monthly_income.keys[0][0]}年", "#{i}月"]] = '0円'
           else
-            hash[["#{date}年", "#{i}月"]] = '0'
+            hash[["#{now_date_year}年", "#{i}月"]] = '0'
           end
         elsif monthly_income.present?
           hash[["#{monthly_income.keys[0][0]}年", "#{i}月"]] = '0円'
         else
-          hash[["#{date}年", "#{i}月"]] = '0'
+          hash[["#{now_date_year}年", "#{i}月"]] = '0'
         end
       end
       i += 1
     end
     hash
+  end
+
+  # 各月の収入が年間収入の何パーセントなのか計算している
+  def ration_to_the_whole(monthly_incom, total_income)
+    @result = (monthly_incom.to_f / total_income.to_f) * 100
+    return sprintf("%.2f", @result)
   end
 end
