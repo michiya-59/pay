@@ -595,7 +595,7 @@ body{
 // 四角のスタイルの部品化
 .income_content, .income_year, .tax_dependents{
   height: auto;
-  width: 27%;
+  width: 32%;
   margin-top: 30px;
   margin-right: 26px;
   text-align: center;
@@ -654,15 +654,26 @@ body{
   margin: 10px 0 0 0;
 }
 
+.income_content_main_bottom{
+  display: flex;
+  .monthly_income{
+    width: 45%;
+  }
+
+  .graph_income{
+    margin: 50px 50px 0 0;
+  }
+}
+
 .monthly_income_header{
   border-bottom: 1px solid lightgray;
   display: flex;
   margin: 35px 0 5px 0;
-  width: 22%;
+  width: 80%;
   padding: 5px 18px;
   font-size: 20px;
   .month{
-    width: 56%;
+    width: 35%;
   }
 }
 
@@ -670,10 +681,10 @@ body{
   border-bottom: 1px solid lightgray;
   display: flex;
   margin: 10px 0 5px 0;
-  width: 22.2%;
+  width: 80%;
   padding: 0 18px;
   .month{
-    width: 31%;
+    width: 35%;
   }
   .income_info{
     display: flex;
@@ -690,7 +701,7 @@ body{
 
 .month_income_total{
   display: flex;
-  width: 28%;
+  width: 100%;
   padding: 5px 18px;
   font-size: 20px;
   .total{

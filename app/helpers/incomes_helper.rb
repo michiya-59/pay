@@ -2,7 +2,7 @@
 
 module IncomesHelper
   require 'date'
-  @date = Date.today
+  @date = Date.today.strftime('%Y')
   def add_units(str)
     # insertは破壊的なメソッドなので元の文字列が変化しないようにコピー
     dup_str = str.dup
@@ -33,6 +33,59 @@ module IncomesHelper
   # 税法上の扶養は103万までのため,103万から年間収入を引いている
   def tax_calculation(income_main_all)
     1_030_000 - array_out_price(income_main_all)
+  end
+
+  def monthly_incomes(monthly_income,type)
+    i = 1 #ループを回す時の回数を示す数字
+    keys = 0 #ハッシュの中身の順番を示す数字
+    hash = Hash.new
+    count = monthly_income.count
+
+    #12ケ月文の収入をループで回している。
+    #何をしているのか思い出すときはrails cでこのメソッドを同じようにコピーしてやれば実行結果がわかる
+    12.times do
+      if type == 'table'
+        if keys < count
+          if i == monthly_income.keys[keys][1]
+            hash.merge!([ monthly_income.keys[keys][0], monthly_income.keys[keys][1] ] => "#{monthly_income.values[keys].to_j}")
+            keys += 1
+          else
+            if monthly_income.present?
+              hash.merge!([ monthly_income.keys[0][0], i ] => "0")
+            else
+              hash.merge!([ @date, i ] => "0")
+            end
+          end
+        else
+          if monthly_income.present?
+              hash.merge!([ monthly_income.keys[0][0], i ] => "0")
+            else
+              hash.merge!([ @date, i ] => "0")
+            end
+        end
+      elsif type == 'graph'
+        if keys < count
+          if i == monthly_income.keys[keys][1]
+            hash.merge!([ "#{monthly_income.keys[keys][0]}年", "#{monthly_income.keys[keys][1]}月" ] => monthly_income.values[keys])
+            keys += 1
+          else
+            if monthly_income.present?
+              hash.merge!([ "#{monthly_income.keys[0][0]}年", "#{i}月" ] => "0円")
+            else
+              hash.merge!([ "#{@date}年", "#{i}月"] => "0")
+            end
+          end
+        else
+          if monthly_income.present?
+            hash.merge!([ "#{monthly_income.keys[0][0]}年", "#{i}月" ] => "0円")
+          else
+            hash.merge!([ "#{@date}年", "#{i}月"] => "0")
+          end
+        end
+      end
+      i += 1
+    end
+    return hash
   end
 
   def conversion(user)
