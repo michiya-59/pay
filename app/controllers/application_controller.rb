@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def now_time_get
-    @now_yaer = Date.today.strftime('%Y')
+    @now_yaer = Time.zone.today.strftime('%Y')
   end
 end

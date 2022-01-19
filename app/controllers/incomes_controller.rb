@@ -16,11 +16,21 @@ class IncomesController < ApplicationController
   def create
     @suppliers = Supplier.where(user_id: current_user.id, is_side_business: @supplier_switch)
     @income = Income.new(set_income_params.merge(set_income_params_supplier))
-    redirect_to user_incomes_path(current_user, is_side_business: false)
-    if @income.save
-      flash[:success] = '本業収入を登録しました'
-    else
-      flash[:error] = @income.errors.full_messages
+    case @income.is_side_business
+    when false
+      redirect_to user_incomes_path(current_user, is_side_business: false)
+      if @income.save
+        flash[:success] = '本業収入を登録しました'
+      else
+        flash[:error] = @income.errors.full_messages
+      end
+    when true
+      redirect_to user_incomes_path(current_user, is_side_business: true)
+      if @income.save
+        flash[:success] = '副業収入を登録しました'
+      else
+        flash[:error] = @income.errors.full_messages
+      end
     end
   end
 

@@ -12,9 +12,4 @@ class Income < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 9_999_999 }
   validates :year, presence: true
   validates :user_id, presence: true
-
-  def conversion
-    self.new_price = NKF.nkf('-w -Z4', price)
-    update_attribute(:price, new_price)
-  end
 end
