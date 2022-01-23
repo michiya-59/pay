@@ -7,6 +7,13 @@ require:
 AllCops:
   Exclude:
     - 'db/schema.rb'
+    - 'db/migrate/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - 'public/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
 
 Rails:
   Enabled: true
