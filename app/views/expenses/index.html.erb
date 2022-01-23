@@ -1,2 +1,92 @@
-<h1>Expenses#index</h1>
-<p>Find me in app/views/expenses/index.html.erb</p>
+
+<div class="main_income">
+  <i class="fas fa-dollar-sign"></i>
+  <p class="main_income_title">
+    経費
+  </p>
+</div>
+
+<% if flash[:error].present? %>
+  <ul class="error_content">
+    <li class="error_main part_error">
+      <% flash[:error].each do |e| %>
+        <%= e %><br>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
+
+<% if @expense_categories.empty? %>
+  <ul class="error_content">
+    <li class="error_main part_error">
+      まだ経費名が登録されておりません。設定から登録してください。
+    </li>
+  </ul>
+<% end %>
+
+
+<div class="income_content_main_top">
+  <div class="income_content">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1>
+        経費 入力
+      </h1>
+    </div>
+    <%= form_with(model: @expense, url: user_expenses_path(current_user), local: true, class: 'business_form') do |f| %>
+      <div class="business_top">
+        <%= f.select :month, [["1月",1],["2月",2],["3月",3],["4月",4],["5月",5],["6月",6],["7月",7],["8月",8],["9月",9],["10月",10],["11月",11],["12月",12]] %>
+        <%= fields_for :expense_category do |expense_category_f| %>
+          <%= expense_category_f.select :expense_category_id , @expense_categories.map{ |expense_category| [expense_category.name, expense_category.id]} %>
+        <% end %>
+      </div>
+      <div class="business_bottom">
+        <%= f.text_field :price %>円
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :year, :value => @now_yaer %>
+        <%= f.submit '登録', class: 'business_submit' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="income_year">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1>年間経費</h1>
+    </div>
+    <h1 class="year_income">
+      <%= array_out_price(@expense_price_all).to_j %>円
+    </h1>
+  </div>
+</div>
+
+<div class="income_content_main_bottom">
+  <div class="monthly_income">
+    <div class="monthly_income_header">
+      <p class="month">月</p>
+      <p class="income">経費</p>
+    </div>
+
+    <% month_array.each do |month| %>
+      <div class="month_part_income_tr">
+        <p class="month"><%= month %>月</p>
+        <% monthly_incomes(@expense_price_all,"table").each do |expense_month, expense| %>
+          <% if month == expense_month[1] %>
+            <div class="income_info">
+              <p class="income"><%= expense %>円</p>
+              <%= link_to '詳細', shows_user_expenses_path(current_user.id, year: expense_month[0], month: expense_month[1]), class: 'income_detail' %>
+            </div>
+            <% break %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="month_income_total">
+      <p class="total">合計</p>
+      <p class="total_income"><%= array_out_price(@expense_price_all) %>円</p>
+    </div>
+  </div>
+  <div class="graph_income">
+    <%= column_chart monthly_incomes(@expense_price_all,"graph"), id: "column-chart", width: "700px", height: "650px" %>
+  </div>
+</div>

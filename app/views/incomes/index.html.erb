@@ -87,27 +87,24 @@
       <p class="month">月</p>
       <p class="income">収入</p>
     </div>
-
-    
-      <% month_array.each do |month| %>
-        <div class="month_part_income_tr">
-          <p class="month"><%= month %>月</p>
-          <% monthly_incomes(@monthly_income,"table").each do |income_month, income| %>
-            <% if month == income_month[1] %>
-              <div class="income_info">
-                <p class="income"><%= income %>円</p>
-                <%= link_to '詳細', shows_user_incomes_path(year: income_month[0], month: income_month[1], is_side_business: @supplier_switch), class: 'income_detail' %>
-              </div>
-              <% break %>
-            <% end %>
+    <% month_array.each do |month| %>
+      <div class="month_part_income_tr">
+        <p class="month"><%= month %>月</p>
+        <% monthly_incomes(@monthly_income,"table").each do |income_month, income| %>
+          <% if month == income_month[1] %>
+            <div class="income_info">
+              <p class="income"><%= income %>円</p>
+              <%= link_to '詳細', shows_user_incomes_path(year: income_month[0], month: income_month[1], is_side_business: @supplier_switch), class: 'income_detail' %>
+            </div>
+            <% break %>
           <% end %>
-        </div>
-      <% end %>
-      <div class="month_income_total">
-        <p class="total">合計</p>
-        <p class="total_income"><%= array_out_price(@income_main_price_all) %>円</p>
+        <% end %>
       </div>
-    
+    <% end %>
+    <div class="month_income_total">
+      <p class="total">合計</p>
+      <p class="total_income"><%= array_out_price(@income_main_price_all) %>円</p>
+    </div>
   </div>
   
     <div class="graph_income">

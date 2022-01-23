@@ -35,7 +35,7 @@
     </li>
     <li class="header_nav_part">
       <% if logged_in? %>
-        <%= link_to '経費', '#', class: 'nav'%>
+        <%= link_to '経費', user_expenses_path(current_user), class: 'nav'%>
       <% else %>
         <span class="nav none">経費</span>
       <% end %>

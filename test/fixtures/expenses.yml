@@ -3,13 +3,13 @@
 one:
   month: 1
   price: 1
-  expenses_category_id: 1
+  expense_category_id: 1
   user_id: 1
   year: 1
 
 two:
   month: 1
   price: 1
-  expenses_category_id: 1
+  expense_category_id: 1
   user_id: 1
   year: 1
