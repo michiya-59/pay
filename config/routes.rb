@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'expenses/index'
+  get 'expenses/new'
+  get 'expenses/create'
+  get 'expenses/edit'
+  get 'expenses/update'
+  get 'expenses/destroy'
+  get 'expenses/show'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
