@@ -24,6 +24,7 @@
   </ul>
 <% end %>
 
+
 <div class="income_content_main_top">
   <div class="income_content">
     <div class="business_title">
@@ -72,6 +73,13 @@
     <h3 class="huyou_price"><%= tax_calculation(@income_main_price_all).to_j %>円</h3>
   </div>
 </div>
+<% if @supplier_switch == "false" %>
+  <% if @is_side_business_income.present? %>
+    
+  <% end %>
+<% elsif @supplier_switch == "true" %>
+    
+<% end %>
 
 <div class="income_content_main_bottom">
   <div class="monthly_income">

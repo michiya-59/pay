@@ -10,6 +10,7 @@ class IncomesController < ApplicationController
     @suppliers = Supplier.where(user_id: current_user.id, is_side_business: @supplier_switch)
     @income_main_price_all = @incomes.group(:month).sum(:price)
     @monthly_income = @incomes.group(:year).group(:month).sum(:price)
+    @is_side_business_income = Income.find_by(user_id: current_user.id, is_side_business: true)
   end
 
   def new; end
