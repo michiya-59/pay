@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'sessions#new'
-
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -15,11 +13,19 @@ Rails.application.routes.draw do
         post :suppliers_confirm_edit, action: :suppliers_confirm_edit
       end
     end
+
     post :user_confirm, action: :user_confirm_new, on: :new
+
     resources :expense_categories do
       post :expense_categories_confirm, action: :expense_categories_confirm_new, on: :new
       member do
         post :expense_categories_confirm_edit, action: :expense_categories_confirm_edit
+      end
+    end
+
+    resources :incomes do
+      collection do
+        get 'shows'
       end
     end
   end

@@ -1,0 +1,117 @@
+
+<div class="main_income">
+  <i class="fas fa-dollar-sign"></i>
+  <p class="main_income_title">
+    <%= supplier_which?(@supplier_switch) %>収入
+  </p>
+</div>
+
+<% if flash[:error].present? %>
+  <ul class="error_content">
+    <li class="error_main part_error">
+      <% flash[:error].each do |e| %>
+        <%= e %><br>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
+
+<% if @suppliers.empty? %>
+  <ul class="error_content">
+    <li class="error_main part_error">
+      まだ<%= supplier_which?(@supplier_switch) %>名が登録されておりません。設定から登録してください。
+    </li>
+  </ul>
+<% end %>
+
+
+<div class="income_content_main_top">
+  <div class="income_content">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1>
+        <%= supplier_which?(@supplier_switch) %>収入 入力
+      </h1>
+    </div>
+    <%= form_with(model: @income, url: user_incomes_path(current_user), local: true, class: 'business_form') do |f| %>
+      <div class="business_top">
+        <%= f.select :month, [["1月",1],["2月",2],["3月",3],["4月",4],["5月",5],["6月",6],["7月",7],["8月",8],["9月",9],["10月",10],["11月",11],["12月",12]] %>
+        <%= fields_for :supplier do |supplier_f| %>
+          <%= supplier_f.select :supplier_id, @suppliers.map{ |supplier| [supplier.name, supplier.id]} %>
+        <% end %>
+      </div>
+      <div class="business_bottom">
+        <%= f.text_field :price %>円
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :year, :value => @now_yaer %>
+        <% if @supplier_switch == "false" %>
+          <%= f.hidden_field :is_side_business, :value => false %>
+        <% else %>
+          <%= f.hidden_field :is_side_business, :value => true %>
+        <% end %>
+        <%= f.submit '登録', class: 'business_submit' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="income_year">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1>年間<%= supplier_which?(@supplier_switch) %>収入</h1>
+    </div>
+    <h1 class="year_income">
+      <%= array_out_price(@income_main_price_all).to_j %>円
+    </h1>
+  </div>
+
+  <div class="tax_dependents">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1>税法上の扶養</h1>
+    </div>
+    <p class="huyou_p">扶養が超えるまで残り</p>
+    <h3 class="huyou_price"><%= tax_calculation(@income_main_price_all).to_j %>円</h3>
+  </div>
+</div>
+<% if @supplier_switch == "false" %>
+  <% if @is_side_business_income.present? %>
+    
+  <% end %>
+<% elsif @supplier_switch == "true" %>
+    
+<% end %>
+
+<div class="income_content_main_bottom">
+  <div class="monthly_income">
+    <div class="monthly_income_header">
+      <p class="month">月</p>
+      <p class="income">収入</p>
+    </div>
+
+    
+      <% month_array.each do |month| %>
+        <div class="month_part_income_tr">
+          <p class="month"><%= month %>月</p>
+          <% monthly_incomes(@monthly_income,"table").each do |income_month, income| %>
+            <% if month == income_month[1] %>
+              <div class="income_info">
+                <p class="income"><%= income %>円</p>
+                <%= link_to '詳細', shows_user_incomes_path(year: income_month[0], month: income_month[1], is_side_business: @supplier_switch), class: 'income_detail' %>
+              </div>
+              <% break %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="month_income_total">
+        <p class="total">合計</p>
+        <p class="total_income"><%= array_out_price(@income_main_price_all) %>円</p>
+      </div>
+    
+  </div>
+  
+    <div class="graph_income">
+      <%= column_chart monthly_incomes(@monthly_income,"graph"), id: "column-chart", width: "700px", height: "650px" %>
+    </div>
+  
+</div>

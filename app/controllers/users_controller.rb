@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
-      redirect_to user_suppliers_path(@user)
+      redirect_to suppliers_path(is_side_business: false)
     else
       render 'new'
     end

@@ -23,6 +23,10 @@ ja:
       expense_category:
         id: ID
         name: 経費名
+      income:
+        id: ID
+        price: 収入
+        month: 月
   date:
     abbr_day_names:
     - 日

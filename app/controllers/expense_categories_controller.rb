@@ -20,7 +20,7 @@ class ExpenseCategoriesController < ApplicationController
   def create
     @expense = ExpenseCategory.new(set_expense_params)
     if @expense.save
-      redirect_to user_expense_categories_url(@current_user)
+      redirect_to user_expense_categories_url(current_user)
       flash[:success] = '登録完了しました'
     end
   end
@@ -33,7 +33,7 @@ class ExpenseCategoriesController < ApplicationController
 
   def update
     @expense.update(set_expense_params)
-    redirect_to user_expense_categories_url(@current_user)
+    redirect_to user_expense_categories_url(current_user)
     flash[:success] = '編集完了しました'
   end
 
@@ -44,6 +44,6 @@ class ExpenseCategoriesController < ApplicationController
   end
 
   def set_expense_category
-    @expense = ExpenseCategory.find_by(id: @current_user)
+    @expense = ExpenseCategory.find_by(id: current_user)
   end
 end
