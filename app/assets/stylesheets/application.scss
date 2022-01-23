@@ -72,7 +72,26 @@ body{
   position: relative;
   top: 20px;
 }
-// エラーメッセージスタイル終わり
+
+.tax_beyond{
+  display: flex;
+  background: #ffdddd;
+  color: #b62323;
+  .beyond{
+    line-height: 111px;
+    font-size: 1.1vw;
+    height: 108px;
+    margin: 0;
+    padding: 0;
+  }
+  .fa.fa-exclamation-circle {
+    font-size: 25px;
+    height: 100px;
+    line-height: 113px;
+    margin-left: 10%;
+  }
+}
+// エラーメッセージ系のスタイル終わり
 
 .fas{
   color: $sub_str_color;
@@ -131,7 +150,14 @@ body{
         &:hover{
           text-decoration: none;
         }
+        &:active{
+          text-decoration: none;
+        }
       }
+    }
+
+    .line_nav{
+      border-bottom: 2.5px solid $main_color;
     }
   }
   

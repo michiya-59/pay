@@ -8,6 +8,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.new
     @expense_categories = ExpenseCategory.where(user_id: current_user.id)
     @expense_price_all = @expenses.group(:year).group(:month).sum(:price)
+    @line = "expense"
   end
 
   def new

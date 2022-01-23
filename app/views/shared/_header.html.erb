@@ -12,28 +12,47 @@
   <% end %>
 
   <ul class="header_middle">
+  <% if @line == "home" %>
+    <li class="header_nav_part line_nav">
+  <% else %>
     <li class="header_nav_part">
+  <% end %>
       <% if logged_in? %>
         <%= link_to 'ホーム', "#", class: 'nav'%>
       <% else %>
         <span class="nav none">ホーム</span>
       <% end %>
     </li>
+
+  <% if @line == "main" %>
+    <li class="header_nav_part line_nav">
+  <% else %>
     <li class="header_nav_part">
+  <% end %>
       <% if logged_in? %>
         <%= link_to '本業収入',user_incomes_path(current_user, is_side_business: false), class: 'nav' %>
       <% else %>
         <span class="nav none">本業収入</span>
       <% end %>
     </li>
+
+  <% if @line == "sub" %>
+    <li class="header_nav_part line_nav">
+  <% else %>
     <li class="header_nav_part">
+  <% end %>
       <% if logged_in? %>
         <%= link_to '副業収入', user_incomes_path(current_user, is_side_business: true), class: 'nav'%>
       <% else %>
         <span class="nav none">副業収入</span>
       <% end %>
     </li>
+
+  <% if @line == "expense" %>
+    <li class="header_nav_part line_nav">
+  <% else %>
     <li class="header_nav_part">
+  <% end %>
       <% if logged_in? %>
         <%= link_to '経費', user_expenses_path(current_user), class: 'nav'%>
       <% else %>

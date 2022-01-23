@@ -20,22 +20,38 @@ module IncomesHelper
     Time.zone.today.strftime('%Y')
   end
 
-  # ハッシュ値からvaluesの値段を一つずつ取り出し,合計を求めているメソッド
+  # 年間収入を求めている
   def array_out_price(income_main_all)
     income_main_all.values.map(&:to_i).sum
   end
 
+  # 副業収入から経費を引いた年間所得を求めている
+  def annual_income(side_business, expense)
+    array_out_price(side_business) - array_out_price(expense)
+  end
+  
+  # 税法上の扶養は103万までのため,103万から年間収入を引いている
+  def tax_calculation(income_main_all, side_business_income, expense_price_all)
+    if side_business_income.present? #副業収入があった場合
+      main_business_incom_total = array_out_price(income_main_all) + annual_income(side_business_income, expense_price_all)
+      if main_business_incom_total <= 1_030_000
+        income_tax = 1_030_000 - main_business_incom_total
+      else
+        income_tax = "103万円を超えて扶養を超えました。"
+      end
+    else 
+      income_tax = 1_030_000 - array_out_price(income_main_all)
+    end
+    income_tax
+  end
+
+  # 本業か副業か判別している
   def supplier_which?(supplier_switch)
     if supplier_switch == 'false'
       '本業'
     else
       '副業'
     end
-  end
-
-  # 税法上の扶養は103万までのため,103万から年間収入を引いている
-  def tax_calculation(income_main_all)
-    1_030_000 - array_out_price(income_main_all)
   end
 
   def monthly_incomes(monthly_income, type)
@@ -90,6 +106,7 @@ module IncomesHelper
     format('%.2f', result)
   end
 
+  # 各月の収入の詳細画面のグラフ
   def monthly_incomes_grah(monthly_incomes)
     count = monthly_incomes.size
     i = 0

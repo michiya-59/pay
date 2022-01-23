@@ -5,13 +5,22 @@ class IncomesController < ApplicationController
   before_action :redirect_when_no_logged_in
   before_action :get_switch_bisiness
   before_action :total_income
+  include(IncomesHelper)
 
   def index
     @income = Income.new
     @suppliers = Supplier.where(user_id: current_user.id, is_side_business: @supplier_switch)
-    @income_main_price_all = @incomes.group(:month).sum(:price)
     @monthly_income = @incomes.group(:year).group(:month).sum(:price)
     @is_side_business_income = Income.find_by(user_id: current_user.id, is_side_business: true)
+    @income_sub_total_price = Income.where(user_id: current_user.id, is_side_business: true).group(:year).group(:month).sum(:price)
+    @income_main_total_price = Income.where(user_id: current_user.id, is_side_business: false).group(:year).group(:month).sum(:price)
+    @expense_price_all = Expense.where(user_id: current_user.id).group(:year).group(:month).sum(:price)
+    if @supplier_switch == "false"
+      @line = "main"
+    else
+      @line = "sub"
+    end
+    @tax_calculation_price = tax_calculation(@monthly_income, @income_sub_total_price, @expense_price_all)
   end
 
   def new; end
