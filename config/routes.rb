@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :incomes do 
+    resources :incomes do
       collection do
         get 'shows'
       end

@@ -516,7 +516,9 @@ body{
     text-decoration: none;
   }
 }
-
+.update{
+  width: 63px;
+}
 .top{
   background-color: #a3a3a385;
   height: 40px;
@@ -668,6 +670,9 @@ body{
   .monthly_income{
     width: 45%;
   }
+  .monthly_part{
+    width: 37%;
+  }
 
   .graph_income{
     margin: 50px 50px 0 0;
@@ -684,6 +689,24 @@ body{
   .month{
     width: 35%;
   }
+
+}
+// 各月の収入のスタイル
+.part_income{
+  width: 25%;
+}
+.part_income_name{
+  width: 26%;
+}
+.part_income_info{
+  width: 25%;
+}
+.part_income_name_info{
+  width: 36%;
+}
+.part_income_create_info{
+  width: 31%;
+  margin: 0 0 10px;
 }
 
 .month_part_income_tr{
@@ -706,6 +729,17 @@ body{
       margin: 0 0 10px 12px;
     }
   }
+  .right{
+    width: 340px;
+  }
+}
+.part_income_header{
+  width: 97%;
+}
+.part_income_tr{
+  font-size: 11px;
+  line-height: 21px;
+  width: 97.5%;
 }
 
 .month_income_total{

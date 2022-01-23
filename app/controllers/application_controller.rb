@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
     return if current_user
 
     redirect_to login_path
+    flash[:not_login] = 'ログインされてません。ログインしてください。'
   end
 
   def now_time_get

@@ -12,7 +12,7 @@ module IncomesHelper
   end
 
   def month_array
-    return  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   end
 
   def now_date_year
@@ -86,6 +86,17 @@ module IncomesHelper
   # 各月の収入が年間収入の何パーセントなのか計算している
   def ration_to_the_whole(monthly_incom, total_income)
     @result = (monthly_incom.to_f / total_income.to_f) * 100
-    return sprintf("%.2f", @result)
+    format('%.2f', @result)
+  end
+
+  def monthly_incomes_grah(monthly_incomes)
+    count = monthly_incomes.size
+    i = 0
+    hash = {}
+    count.times do
+      hash[["#{monthly_incomes[i].month}月", monthly_incomes[i].created_at.strftime('%m月%d日')]] = "#{monthly_incomes[i].price}円"
+      i += 1
+    end
+    hash
   end
 end

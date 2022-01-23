@@ -26,3 +26,28 @@
     </h1>
   </div>
 </div>
+
+<div class="income_content_main_bottom">
+    <div class="monthly_income monthly_part">
+      <div class="monthly_income_header part_income_header">
+        <p class="part_income">収入</p>
+        <p class="part_income_name">本業名</p>
+        <p class="part_income_create">登録日</p>
+      </div>
+
+      <% @monthly_incomes.each do |monthly_income| %>
+        <div class="month_part_income_tr part_income_tr">
+          <p class="part_income_info"><%= monthly_income.price.to_j %>円</p>
+          <div class="income_info right">
+            <p class="part_income_name_info"><%= monthly_income.supplier.name %></p>
+            <p class="part_income_create_info"><%= monthly_income.created_at.strftime('%Y/%m/%d') %></p>
+            <%= link_to '変更', edit_user_income_path(current_user, monthly_income, is_side_business: @supplier_switch), class: 'income_detail update' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="graph_income">
+      <%= column_chart monthly_incomes_grah(@monthly_incomes), id: "column-chart", width: "462px", height: "331px" %>
+    </div>
+</div>

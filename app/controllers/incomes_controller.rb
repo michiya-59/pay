@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class IncomesController < ApplicationController
+  before_action :redirect_when_no_logged_in
   before_action :get_switch_bisiness
   before_action :total_income
-  before_action :redirect_when_no_logged_in
 
   def index
     @income = Income.new
@@ -41,13 +41,12 @@ class IncomesController < ApplicationController
 
   def show; end
 
-  def shows 
+  def shows
     @month = params[:month]
     @year = params[:year]
     @supplier_business = params[:is_side_business]
 
     @monthly_incomes = Income.where(user_id: current_user.id, is_side_business: @supplier_business, year: @year, month: @month)
-    
   end
 
   private
