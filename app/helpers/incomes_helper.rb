@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize
 module IncomesHelper
   def add_units(str)
     # insertは破壊的なメソッドなので元の文字列が変化しないようにコピー
@@ -85,8 +86,8 @@ module IncomesHelper
 
   # 各月の収入が年間収入の何パーセントなのか計算している
   def ration_to_the_whole(monthly_incom, total_income)
-    @result = (monthly_incom.to_f / total_income.to_f) * 100
-    format('%.2f', @result)
+    result = (monthly_incom.to_f / total_income) * 100
+    format('%.2f', result)
   end
 
   def monthly_incomes_grah(monthly_incomes)
@@ -100,3 +101,4 @@ module IncomesHelper
     hash
   end
 end
+# rubocop:enable Metrics/AbcSize

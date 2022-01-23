@@ -28,18 +28,15 @@ Style/Documentation:
   Enabled: false
 
 Metrics/CyclomaticComplexity:
-  Max: 9
-
-Metrics/MethodLength:
-  Max: 12
+  Max: 11
 
 # 分岐の数。ガード句を多用しているとデフォルト 8 だと厳しい
 Metrics/PerceivedComplexity:
-  Max: 9
+  Max: 14
 
 # 20 行超えるのは migration ファイル以外滅多に無い
 Metrics/MethodLength:
-  Max: 20
+  Max: 40
   Exclude:
     - "db/migrate/*.rb"
 

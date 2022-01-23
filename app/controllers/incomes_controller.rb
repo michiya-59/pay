@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize
 class IncomesController < ApplicationController
   before_action :redirect_when_no_logged_in
   before_action :get_switch_bisiness
@@ -17,21 +18,21 @@ class IncomesController < ApplicationController
 
   def create
     @suppliers = Supplier.where(user_id: current_user.id, is_side_business: @supplier_switch)
-    @income = Income.new(set_income_params.merge(set_income_params_supplier))
-    case @income.is_side_business
+    income = Income.new(set_income_params.merge(set_income_params_supplier))
+    case income.is_side_business
     when false
       redirect_to user_incomes_path(current_user, is_side_business: false)
-      if @income.save
+      if income.save
         flash[:success] = '本業収入を登録しました'
       else
-        flash[:error] = @income.errors.full_messages
+        flash[:error] = income.errors.full_messages
       end
     when true
       redirect_to user_incomes_path(current_user, is_side_business: true)
-      if @income.save
+      if income.save
         flash[:success] = '副業収入を登録しました'
       else
-        flash[:error] = @income.errors.full_messages
+        flash[:error] = income.errors.full_messages
       end
     end
   end
@@ -68,3 +69,4 @@ class IncomesController < ApplicationController
     @incomes = Income.where(user_id: current_user.id, is_side_business: @supplier_switch)
   end
 end
+# rubocop:enable Metrics/AbcSize
