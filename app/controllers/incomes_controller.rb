@@ -5,6 +5,7 @@ class IncomesController < ApplicationController
   before_action :redirect_when_no_logged_in
   before_action :get_switch_bisiness
   before_action :total_income
+  before_action :line_judge
   include(IncomesHelper)
 
   def index
@@ -15,11 +16,6 @@ class IncomesController < ApplicationController
     @income_sub_total_price = Income.where(user_id: current_user.id, is_side_business: true).group(:year).group(:month).sum(:price)
     @income_main_total_price = Income.where(user_id: current_user.id, is_side_business: false).group(:year).group(:month).sum(:price)
     @expense_price_all = Expense.where(user_id: current_user.id).group(:year).group(:month).sum(:price)
-    if @supplier_switch == "false"
-      @line = "main"
-    else
-      @line = "sub"
-    end
     @tax_calculation_price = tax_calculation(@monthly_income, @income_sub_total_price, @expense_price_all)
   end
 
@@ -76,6 +72,14 @@ class IncomesController < ApplicationController
 
   def total_income
     @incomes = Income.where(user_id: current_user.id, is_side_business: @supplier_switch)
+  end
+
+  def line_judge
+    if @supplier_switch == "false"
+      @line = "main"
+    else
+      @line = "sub"
+    end
   end
 end
 # rubocop:enable Metrics/AbcSize

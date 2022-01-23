@@ -3,12 +3,12 @@ class ExpensesController < ApplicationController
   before_action :set_expense_params, only: [:create]
   before_action :set_expense_category, only: [:create]
   before_action :part_expense
+  before_action :line_judge
 
   def index
     @expense = Expense.new
     @expense_categories = ExpenseCategory.where(user_id: current_user.id)
     @expense_price_all = @expenses.group(:year).group(:month).sum(:price)
-    @line = "expense"
   end
 
   def new
@@ -21,7 +21,7 @@ class ExpensesController < ApplicationController
       flash[:success] = "経費を登録しました"
     else
       redirect_to user_expenses_path(current_user)
-      flash[:error] = @income.errors.full_messages
+      flash[:error] = @expense.errors.full_messages
     end
   end
 
@@ -56,5 +56,9 @@ class ExpensesController < ApplicationController
 
   def part_expense
     @expenses = Expense.where(user_id: current_user.id)
+  end
+
+  def line_judge
+    @line = "expense"
   end
 end

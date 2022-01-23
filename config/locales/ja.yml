@@ -27,6 +27,12 @@ ja:
         id: ID
         price: 収入
         month: 月
+        year: 年
+      expense: 
+        id: ID
+        price: 経費
+        month: 月
+        year: 年
   date:
     abbr_day_names:
     - 日
