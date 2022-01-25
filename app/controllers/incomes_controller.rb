@@ -6,6 +6,7 @@ class IncomesController < ApplicationController
   before_action :get_switch_bisiness
   before_action :total_income
   before_action :line_judge
+  before_action :get_income, only: [:edit, :income_confirm_edit, :update]
   include(IncomesHelper)
 
   def index
@@ -44,6 +45,24 @@ class IncomesController < ApplicationController
 
   def edit; end
 
+  def income_confirm_edit
+    @income_price = params[:price]
+    if @income_price.to_s =~ /\A[０-９]+\z/ # 全角数字だった場合半角数字に変換している処理
+      @income_price = params[:price].tr!("０-９", "0-9")
+    end
+    if @income_price.blank?
+      redirect_to edit_user_income_path(current_user, is_side_business: @income.is_side_business)
+      flash[:error] = "#{supplier_which?(params[:is_side_business])}収入を入力してください"
+    end
+    
+  end
+
+  def update
+    @income.update(post_params)
+    redirect_to shows_user_incomes_path(current_user, is_side_business: @income.is_side_business, month: @income.month, year: @income.year)
+    flash[:success] = '編集完了しました'
+  end
+
   def destroy; end
 
   def show; end
@@ -63,7 +82,11 @@ class IncomesController < ApplicationController
   end
 
   def set_income_params_supplier
-    params.require(:supplier).permit(:supplier_id)
+    params.require(:supplier).permit(:month, :price, :user_id, :is_side_business, :year, :price)
+  end
+
+  def post_params
+    params.require(:income).permit(:price)
   end
 
   def get_switch_bisiness
@@ -80,6 +103,10 @@ class IncomesController < ApplicationController
     else
       @line = "sub"
     end
+  end
+
+  def get_income
+    @income = Income.find(params[:id])
   end
 end
 # rubocop:enable Metrics/AbcSize

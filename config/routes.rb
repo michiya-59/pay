@@ -27,11 +27,17 @@ Rails.application.routes.draw do
       collection do
         get 'shows'
       end
+      member do
+        post :income_confirm_edit, action: :income_confirm_edit
+      end
     end
 
     resources :expenses do
       collection do
         get 'shows'
+      end
+      member do
+        post :expense_confirm_edit, action: :expense_confirm_edit
       end
     end
   end

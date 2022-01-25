@@ -73,6 +73,11 @@ body{
   top: 20px;
 }
 
+.part_error_edit{
+  color: #8c1818;
+  margin: 0;
+}
+
 .tax_beyond{
   display: flex;
   background: #ffdddd;
@@ -301,7 +306,6 @@ body{
     background: lightgray;
     margin: 0;
     padding: 6px 22px;
-    font-weight: bold;
     .form_span{
       color: brown;
       margin-left: 9px;
@@ -322,7 +326,6 @@ body{
     background: lightgray;
     margin: 0;
     padding: 6px 22px;
-    font-weight: bold;
     .form_span{
       color: brown;
       margin-left: 9px;
@@ -584,11 +587,13 @@ body{
     background: lightgray;
     margin: 0;
     padding: 6px 22px;
-    font-weight: bold;
     .form_span{
       color: brown;
       margin-left: 9px;
     }
+  }
+  #price{
+    margin: 14px 10px 14px 24px;
   }
 
   .entry_form_info{

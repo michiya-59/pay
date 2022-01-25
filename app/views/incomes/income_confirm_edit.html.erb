@@ -1,0 +1,31 @@
+<h1 class="new_supplier_name">
+  <%= @income.created_at.strftime('%m月%d日') %> <%= supplier_which?(@supplier_switch) %>収入 変更
+</h1>
+
+<div class="entry_top">
+  <h2 class="step1">STEP1 入力</h2><div class="step1_triangle"></div>
+  <div class="a" style="border-top: 39px solid rgba(0,112,108,0.8);border-bottom: 39px solid rgba(0,112,108,0.8);"></div>
+  <h2 class="step2"  style="background: rgba(0,112,108,0.8);color: white;">STEP2 確認</h2><div class="step2_triangle" style="border-left: 25px solid rgba(0,112,108,0.8);"></div>
+  <div class="a2"></div>
+  <h2 class="step3">STEP3 完了</h2>
+</div>
+
+<p class="login_info_msg">確認情報</p>
+<%= form_with(model: @income, url: user_income_path(current_user, @income), local: true) do |f| %>
+  <div class="entry_form_supplier">
+    <p class="login_form_detail">
+      <%= supplier_which?(@supplier_switch) %>収入
+      <span class="form_span">必須</sapn>
+    </p>
+    <p class="entry_form_info"><%= @income_price %>円</p>
+    <%= f.hidden_field :price, :value => @income_price %>
+    <%= f.hidden_field :month, :value => params[:month] %>
+    <%= f.hidden_field :year, :value => params[:year] %>
+    <%= f.hidden_field :supplier_id, :value => params[:supplier_id] %>
+    <%= f.hidden_field :user_id, :value => params[:user_id] %>
+    <div class="entry_button_mass">
+      <%= link_to '戻る', :back, class: "entry_button" %>
+      <%= f.submit '送信' ,class: 'entry_button1' %>
+    </div>
+  </div>
+<% end %>
