@@ -29,17 +29,17 @@ module IncomesHelper
   def annual_income(side_business, expense)
     array_out_price(side_business) - array_out_price(expense)
   end
-  
+
   # 税法上の扶養は103万までのため,103万から年間収入を引いている
   def tax_calculation(income_main_all, side_business_income, expense_price_all)
-    if side_business_income.present? #副業収入があった場合
+    if side_business_income.present? # 副業収入があった場合
       main_business_incom_total = array_out_price(income_main_all) + annual_income(side_business_income, expense_price_all)
-      if main_business_incom_total <= 1_030_000
-        income_tax = 1_030_000 - main_business_incom_total
-      else
-        income_tax = "103万円を超えて扶養を超えました。"
-      end
-    else 
+      income_tax = if main_business_incom_total <= 1_030_000
+                     1_030_000 - main_business_incom_total
+                   else
+                     '103万円を超えて扶養を超えました。'
+                   end
+    else
       income_tax = 1_030_000 - array_out_price(income_main_all)
     end
     income_tax

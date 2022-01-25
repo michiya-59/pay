@@ -41,7 +41,7 @@
           <div class="income_info right">
             <p class="part_income_name_info"><%= monthly_expense.expense_category.name %></p>
             <p class="part_income_create_info"><%= monthly_expense.created_at.strftime('%Y/%m/%d') %></p>
-            <%= link_to '変更', edit_user_income_path(current_user, monthly_expense), class: 'income_detail update' %>
+            <%= link_to '変更', edit_user_expense_path(current_user, monthly_expense), class: 'income_detail update' %>
           </div>
         </div>
       <% end %>

@@ -1,2 +1,34 @@
-<h1>Expenses#edit</h1>
-<p>Find me in app/views/expenses/edit.html.erb</p>
+<h1 class="new_supplier_name">
+  <%= @expense.created_at.strftime('%m月%d日') %>経費 変更
+</h1>
+
+<div class="entry_top">
+  <h2 class="step1" style="background: rgba(0,112,108,0.8);color: white;">STEP1 入力</h2><div class="step1_triangle" style="border-left: 25px solid rgba(0,112,108,0.8);"></div>
+  <div class="a"></div>
+  <h2 class="step2">STEP2 確認</h2><div class="step2_triangle"></div>
+  <div class="a2"></div>
+  <h2 class="step3">STEP3 完了</h2>
+</div>
+
+<% if flash[:error].present? %>
+  <ul class="error_content">
+    <li class="error_main part_error_edit">
+      <%= flash[:error] %><br>
+    </li>
+  </ul>
+<% end %>
+
+<%= form_with(url: expense_confirm_edit_user_expense_path(current_user, @expense), local: true) do |f| %>
+  <div class="entry_form_supplier">
+    <p class="login_form_detail">経費<span class="form_span">必須</sapn></p>
+    <%= f.hidden_field :month, :value => @expense.month %>
+    <%= f.hidden_field :year, :value => @expense.year %>
+    <%= f.hidden_field :user_id, :value => @expense.user_id %>
+    <%= f.hidden_field :expense_category_id, :value => @expense.expense_category_id %>
+    <%= f.text_field :price, class: "form_input", :value => @expense.price %>円
+    <div class="entry_button_mass">
+      <%= link_to '戻る', :back, class: "entry_button" %>
+      <%= f.submit '確認' ,class: 'entry_button1' %>
+    </div>
+  </div>
+<% end %>
