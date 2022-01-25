@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpensesController < ApplicationController
   before_action :redirect_when_no_logged_in
   before_action :set_expense_params, only: [:create]
@@ -17,11 +19,10 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(set_expense_params.merge(set_expense_category))
+    redirect_to user_expenses_path(current_user)
     if @expense.save
-      redirect_to user_expenses_path(current_user)
       flash[:success] = '経費を登録しました'
     else
-      redirect_to user_expenses_path(current_user)
       flash[:error] = @expense.errors.full_messages
     end
   end
