@@ -1,0 +1,53 @@
+<div class="main_income">
+  <i class="fas fa-dollar-sign"></i>
+  <p class="main_income_title">
+    <%= @month %>月経費
+  </p>
+</div>
+
+<div class="income_content_main_top">
+  <div class="income_year">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1><%= @month %>月経費</h1>
+    </div>
+    <h1 class="year_income income_part_h1">
+      <%= @monthly_expenses.sum(:price).to_j %>円
+    </h1>
+  </div>
+
+  <div class="income_year">
+    <div class="business_title part">
+      <i class="fas fa-dollar-sign"></i>
+      <h1 class="ration_income">年間経費に対しての割合</h1>
+    </div>
+    <h1 class="year_income">
+      <%= ration_to_the_whole(@monthly_expenses.sum(:price), @expenses.sum(:price)) %>%
+    </h1>
+  </div>
+</div>
+
+<div class="income_content_main_bottom">
+    <div class="monthly_income monthly_part">
+      <div class="monthly_income_header part_income_header">
+        <p class="part_income">経費</p>
+        <p class="part_income_name">経費名</p>
+        <p class="part_income_create">登録日</p>
+      </div>
+
+      <% @monthly_expenses.each do |monthly_expense| %>
+        <div class="month_part_income_tr part_income_tr">
+          <p class="part_income_info"><%= monthly_expense.price.to_j %>円</p>
+          <div class="income_info right">
+            <p class="part_income_name_info"><%= monthly_expense.expense_category.name %></p>
+            <p class="part_income_create_info"><%= monthly_expense.created_at.strftime('%Y/%m/%d') %></p>
+            <%= link_to '変更', edit_user_expense_path(current_user, monthly_expense), class: 'income_detail update' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="graph_income">
+      <%= column_chart monthly_incomes_grah(@monthly_expenses), id: "column-chart", width: "462px", height: "331px" %>
+    </div>
+</div>

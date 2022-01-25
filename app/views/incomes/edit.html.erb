@@ -1,2 +1,42 @@
-<h1>Incomes#edit</h1>
-<p>Find me in app/views/incomes/edit.html.erb</p>
+<h1 class="new_supplier_name">
+  <%= @income.created_at.strftime('%m月%d日') %> <%= supplier_which?(@supplier_switch) %>収入 変更
+</h1>
+
+<div class="entry_top">
+  <h2 class="step1" style="background: rgba(0,112,108,0.8);color: white;">STEP1 入力</h2><div class="step1_triangle" style="border-left: 25px solid rgba(0,112,108,0.8);"></div>
+  <div class="a"></div>
+  <h2 class="step2">STEP2 確認</h2><div class="step2_triangle"></div>
+  <div class="a2"></div>
+  <h2 class="step3">STEP3 完了</h2>
+</div>
+
+<% if flash[:error].present? %>
+  <ul class="error_content">
+    <li class="error_main part_error_edit">
+      <%= flash[:error] %><br>
+    </li>
+  </ul>
+<% end %>
+
+<%= form_with(url: income_confirm_edit_user_income_path(current_user, @income), local: true) do |f| %>
+  <div class="entry_form_supplier">
+    <p class="login_form_detail">
+      <%= supplier_which?(@supplier_switch) %>収入
+      <span class="form_span">必須</sapn>
+    </p>
+    <% if @supplier_switch == 'false' %>
+      <%= f.hidden_field :is_side_business, :value => false %>
+    <% else %>
+      <%= f.hidden_field :is_side_business, :value => true %>
+    <% end %>
+    <%= f.hidden_field :month, :value => @income.month %>
+    <%= f.hidden_field :year, :value => @income.year %>
+    <%= f.hidden_field :supplier_id, :value => @income.supplier_id %>
+    <%= f.hidden_field :user_id, :value => @income.user_id %>
+    <%= f.text_field :price, class: "form_input", :value => @income.price %>円
+    <div class="entry_button_mass">
+      <%= link_to '戻る', :back, class: "entry_button" %>
+      <%= f.submit '確認' ,class: 'entry_button1' %>
+    </div>
+  </div>
+<% end %>

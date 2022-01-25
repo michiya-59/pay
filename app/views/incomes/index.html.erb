@@ -53,32 +53,98 @@
       </div>
     <% end %>
   </div>
-
   <div class="income_year">
     <div class="business_title">
       <i class="fas fa-dollar-sign"></i>
       <h1>年間<%= supplier_which?(@supplier_switch) %>収入</h1>
     </div>
     <h1 class="year_income">
-      <%= array_out_price(@income_main_price_all).to_j %>円
+      <%= array_out_price(@monthly_income).to_j %>円
     </h1>
   </div>
-
   <div class="tax_dependents">
     <div class="business_title">
       <i class="fas fa-dollar-sign"></i>
       <h1>税法上の扶養</h1>
     </div>
-    <p class="huyou_p">扶養が超えるまで残り</p>
-    <h3 class="huyou_price"><%= tax_calculation(@income_main_price_all).to_j %>円</h3>
+    <% if @tax_calculation_price.to_s =~ /^[0-9]+$/ %> <%# 返り値が数値か文字列か判別している  %>
+      <p class="huyou_p">扶養が超えるまで残り</p>
+      <h3 class="huyou_price"><%= @tax_calculation_price.to_j %>円</h3>
+    <% else %>
+      <div class="tax_beyond">
+        <i class="fa fa-exclamation-circle "></i> 
+        <p class="huyou_p beyond"><%= @tax_calculation_price %></p>
+      </div>
+    <% end %>
   </div>
 </div>
+
 <% if @supplier_switch == "false" %>
   <% if @is_side_business_income.present? %>
-    
+    <div class="income_content_main_top">
+      <div class="income_year">
+        <div class="business_title">
+          <i class="fas fa-dollar-sign"></i>
+          <h1>年間副業収入</h1>
+        </div>
+        <h1 class="year_income">
+          <%= array_out_price(@income_sub_total_price).to_j %>円
+        </h1>
+      </div>
+
+      <div class="income_year">
+        <div class="business_title">
+          <i class="fas fa-dollar-sign"></i>
+          <h1>年間経費</h1>
+        </div>
+        <h1 class="year_income">
+          <%= array_out_price(@expense_price_all).to_j %>円
+        </h1>
+      </div>
+
+      <div class="income_year">
+        <div class="business_title">
+          <i class="fas fa-dollar-sign"></i>
+          <h1>年間所得</h1>
+        </div>
+        <h1 class="year_income">
+          <%= annual_income(@income_sub_total_price, @expense_price_all).to_j %>円
+        </h1>
+      </div>
+    </div>
   <% end %>
 <% elsif @supplier_switch == "true" %>
-    
+    <div class="income_content_main_top">
+      <div class="income_year">
+        <div class="business_title">
+          <i class="fas fa-dollar-sign"></i>
+          <h1>年間本業収入</h1>
+        </div>
+        <h1 class="year_income">
+          <%= array_out_price(@income_main_total_price).to_j %>円
+        </h1>
+      </div>
+
+      <div class="income_year">
+        <div class="business_title">
+          <i class="fas fa-dollar-sign"></i>
+          <h1>年間経費</h1>
+        </div>
+        <h1 class="year_income">
+          <%= array_out_price(@expense_price_all).to_j %>円
+        </h1>
+      </div>
+
+      <div class="income_year">
+        <div class="business_title">
+          <i class="fas fa-dollar-sign"></i>
+          <h1>年間所得</h1>
+        </div>
+        <h1 class="year_income">
+          <%= annual_income(@income_sub_total_price, @expense_price_all).to_j %>円
+        </h1>
+      </div>
+    </div>
 <% end %>
 
 <div class="income_content_main_bottom">
@@ -87,26 +153,24 @@
       <p class="month">月</p>
       <p class="income">収入</p>
     </div>
-
-    
-      <% month_array.each do |month| %>
-        <div class="month_part_income_tr">
-          <p class="month"><%= month %>月</p>
-          <% monthly_incomes(@monthly_income,"table").each do |income_month, income| %>
-            <% if month == income_month[1] %>
-              <div class="income_info">
-                <p class="income"><%= income %>円</p>
-                <%= link_to '詳細', shows_user_incomes_path(year: income_month[0], month: income_month[1], is_side_business: @supplier_switch), class: 'income_detail' %>
-              </div>
-              <% break %>
-            <% end %>
+    <% month_array.each do |month| %>
+      <div class="month_part_income_tr">
+        <p class="month"><%= month %>月</p>
+        <% monthly_incomes(@monthly_income,"table").each do |income_month, income| %>
+          <% if month == income_month[1] %>
+            <div class="income_info">
+              <p class="income"><%= income %>円</p>
+              <%= link_to '詳細', shows_user_incomes_path(year: income_month[0], month: income_month[1], is_side_business: @supplier_switch), class: 'income_detail' %>
+            </div>
+            <% break %>
           <% end %>
-        </div>
-      <% end %>
-      <div class="month_income_total">
-        <p class="total">合計</p>
-        <p class="total_income"><%= array_out_price(@income_main_price_all) %>円</p>
+        <% end %>
       </div>
+    <% end %>
+    <div class="month_income_total">
+      <p class="total">合計</p>
+      <p class="total_income"><%= array_out_price(@monthly_income) %>円</p>
+    </div>
     
   </div>
   

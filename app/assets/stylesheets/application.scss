@@ -72,7 +72,31 @@ body{
   position: relative;
   top: 20px;
 }
-// エラーメッセージスタイル終わり
+
+.part_error_edit{
+  color: #8c1818;
+  margin: 0;
+}
+
+.tax_beyond{
+  display: flex;
+  background: #ffdddd;
+  color: #b62323;
+  .beyond{
+    line-height: 111px;
+    font-size: 1.1vw;
+    height: 108px;
+    margin: 0;
+    padding: 0;
+  }
+  .fa.fa-exclamation-circle {
+    font-size: 25px;
+    height: 100px;
+    line-height: 113px;
+    margin-left: 10%;
+  }
+}
+// エラーメッセージ系のスタイル終わり
 
 .fas{
   color: $sub_str_color;
@@ -131,7 +155,14 @@ body{
         &:hover{
           text-decoration: none;
         }
+        &:active{
+          text-decoration: none;
+        }
       }
+    }
+
+    .line_nav{
+      border-bottom: 2.5px solid $main_color;
     }
   }
   
@@ -275,7 +306,6 @@ body{
     background: lightgray;
     margin: 0;
     padding: 6px 22px;
-    font-weight: bold;
     .form_span{
       color: brown;
       margin-left: 9px;
@@ -296,7 +326,6 @@ body{
     background: lightgray;
     margin: 0;
     padding: 6px 22px;
-    font-weight: bold;
     .form_span{
       color: brown;
       margin-left: 9px;
@@ -558,11 +587,13 @@ body{
     background: lightgray;
     margin: 0;
     padding: 6px 22px;
-    font-weight: bold;
     .form_span{
       color: brown;
       margin-left: 9px;
     }
+  }
+  #price{
+    margin: 14px 10px 14px 24px;
   }
 
   .entry_form_info{
@@ -753,3 +784,12 @@ body{
 }
 // 本業収入画面のスタイル終了
 
+// 経費画面のスタイル
+  #expense_month{
+    margin-right: 10px;
+  }
+  #expense_price{
+    width: 33%;
+    margin-right: 10px;
+  }
+// 経費画面のスタイル終了
