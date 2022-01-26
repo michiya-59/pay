@@ -25,12 +25,12 @@ class UsersController < ApplicationController
   end
 
   def main
-    @line = 'main'
+    @line = 'home'
     render 'main'
   end
 
   def sub
-    @line = 'main'
+    @line = 'home'
     render 'sub'
   end
 
