@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :income_info_all, only: [:home, :main, :sub]
+  before_action :income_info_all, only: %i[main sub]
 
-  def home
-  end
+  def home; end
 
   def new
     @user = User.new

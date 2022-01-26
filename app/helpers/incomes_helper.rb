@@ -45,11 +45,11 @@ module IncomesHelper
   def tax_calculation(income_main_all, side_business_income, expense_price_all)
     if side_business_income.present? # 副業収入があった場合
       main_business_incom_total = array_out_price(income_main_all) + annual_income(side_business_income, expense_price_all)
-      if main_business_incom_total <= 1_030_000
-        income_tax = 1_030_000 - main_business_incom_total
-      else
-        income_tax = "103万円を超えて扶養を超えました。"
-      end
+      income_tax = if main_business_incom_total <= 1_030_000
+                     1_030_000 - main_business_incom_total
+                   else
+                     '103万円を超えて扶養を超えました。'
+                   end
     else
       income_tax = 1_030_000 - array_out_price(income_main_all)
     end
@@ -61,11 +61,10 @@ module IncomesHelper
   def social_insurance_tax_calculation(income_main_all, side_business_income)
     total_social_insurance = 1_300_000 - main_sub_total_price(income_main_all, side_business_income)
     if total_social_insurance <= 0
-      income_tax = "130万円を超えて社会保険の扶養を超えました。"
+      '130万円を超えて社会保険の扶養を超えました。'
     else
-      income_tax = total_social_insurance
+      total_social_insurance
     end
-    income_tax
   end
 
   # 本業か副業か判別している
@@ -77,12 +76,11 @@ module IncomesHelper
     end
   end
 
-  def monthly_incomes(monthly_income, type)
+  def monthly_incomes(income, type)
     i = 1 # ループを回す時の回数を示す数字
     keys = 0 # ハッシュの中身の順番を示す数字
     hash = {}
-    hash1 = {}
-    count = monthly_income.count
+    count = income.count
 
     # 12ケ月文の収入をループで回している。
     # 何をしているのか思い出すときはrails cでこのメソッドを同じようにコピーしてやれば実行結果がわかる
@@ -90,31 +88,31 @@ module IncomesHelper
       case type
       when 'table'
         if keys < count
-          if i == monthly_income.keys[keys][1]
-            hash[[monthly_income.keys[keys][0], monthly_income.keys[keys][1]]] = monthly_income.values[keys].to_j.to_s
+          if i == income.keys[keys][1]
+            hash[[income.keys[keys][0], income.keys[keys][1]]] = income.values[keys].to_j.to_s
             keys += 1
-          elsif monthly_income.present?
-            hash[[monthly_income.keys[0][0], i]] = '0'
+          elsif income.present?
+            hash[[income.keys[0][0], i]] = '0'
           else
             hash[[now_date_year, i]] = '0'
           end
-        elsif monthly_income.present?
-          hash[[monthly_income.keys[0][0], i]] = '0'
+        elsif income.present?
+          hash[[income.keys[0][0], i]] = '0'
         else
           hash[[now_date_year, i]] = '0'
         end
       when 'graph'
         if keys < count
-          if i == monthly_income.keys[keys][1]
-            hash[["#{monthly_income.keys[keys][0]}年", "#{monthly_income.keys[keys][1]}月"]] = monthly_income.values[keys]
+          if i == income.keys[keys][1]
+            hash[["#{income.keys[keys][0]}年", "#{income.keys[keys][1]}月"]] = income.values[keys]
             keys += 1
-          elsif monthly_income.present?
-            hash[["#{monthly_income.keys[0][0]}年", "#{i}月"]] = '0円'
+          elsif income.present?
+            hash[["#{income.keys[0][0]}年", "#{i}月"]] = '0円'
           else
             hash[["#{now_date_year}年", "#{i}月"]] = '0'
           end
-        elsif monthly_income.present?
-          hash[["#{monthly_income.keys[0][0]}年", "#{i}月"]] = '0円'
+        elsif income.present?
+          hash[["#{income.keys[0][0]}年", "#{i}月"]] = '0円'
         else
           hash[["#{now_date_year}年", "#{i}月"]] = '0'
         end
