@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include(SessionsHelper)
+  include(IncomesHelper)
   before_action :now_time_get
 
   def redirect_when_no_logged_in

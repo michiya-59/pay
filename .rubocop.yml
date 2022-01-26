@@ -40,6 +40,10 @@ Metrics/MethodLength:
   Exclude:
     - "db/migrate/*.rb"
 
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 120
+
 Layout/LineLength:
   Max: 198
 

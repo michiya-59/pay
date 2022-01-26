@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   resources :suppliers, only: [:index]
   resources :users do
+    get 'main'
+    get 'sub'
+
     resources :suppliers, only: %i[show edit update destroy new create] do
       post :suppliers_confirm, action: :supplier_confirm_new, on: :new
       member do

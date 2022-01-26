@@ -18,7 +18,7 @@
     <li class="header_nav_part">
   <% end %>
       <% if logged_in? %>
-        <%= link_to 'ホーム', "#", class: 'nav'%>
+        <%= link_to 'ホーム', user_main_path(current_user, year: now_date_year), class: 'nav'%>
       <% else %>
         <span class="nav none">ホーム</span>
       <% end %>
