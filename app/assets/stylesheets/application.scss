@@ -829,3 +829,28 @@ a:active{
     margin-right: 10px;
   }
 // 経費画面のスタイル終了
+
+.popup_help {
+  padding: 0 3px;
+  color: black;
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 16px;
+  &:hover{
+    opacity: 0.5;
+  }
+}
+.popup_help_window {
+  max-width: 800px;
+  position: absolute;
+  padding: 10px 15px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  display: none;
+  color: #515151;
+  font-size: 13px;
+  line-height: 1.5em;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px #ccc;
+  margin: 0;
+}

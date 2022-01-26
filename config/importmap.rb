@@ -11,3 +11,4 @@ pin 'scheduler', to: 'https://ga.jspm.io/npm:scheduler@0.20.2/index.js'
 pin 'react', to: 'vendor/react@17.0.2.js'
 pin  'chartkick', to: 'chartkick.js'
 pin  'Chart.bundle', to: 'Chart.bundle.js'
+pin 'jquery', to: 'https://code.jquery.com/jquery-3.6.0.min.js', preload: true

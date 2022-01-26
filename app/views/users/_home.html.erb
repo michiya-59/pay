@@ -21,7 +21,7 @@
   <div class="income_year home">
     <div class="business_title">
       <i class="fas fa-dollar-sign home_icon"></i>
-      <h1>年間総収入</h1>
+      <h1>年間総収入<span class="popup_help" data-message="<%= simple_format(total_annual_income_guide) %>">[?]</span></h1>
     </div>
     <h1 class="year_income">
       <%= main_sub_total_price(@income_main_total_price, @income_sub_total_price).to_j %>円
@@ -31,7 +31,7 @@
   <div class="income_year home">
     <div class="business_title">
       <i class="fas fa-dollar-sign home_icon"></i>
-      <h1>年間総所得</h1>
+      <h1>年間総所得<span class="popup_help" data-message="<%= simple_format(total_annual_earning_guide) %>">[?]</span></h1>
     </div>
     <h1 class="year_income">
       <%= total_annual_income(@income_main_total_price, @income_sub_total_price, @expense_price_all).to_j %>円
@@ -43,7 +43,7 @@
   <div class="tax_dependents home">
     <div class="business_title">
       <i class="fas fa-dollar-sign home_icon"></i>
-      <h1>社会保険上の扶養</h1>
+      <h1>社会保険上の扶養<span class="popup_help" data-message="<%= simple_format(social_insurance_guide) %>">[?]</span></h1>
     </div>
     <% if @social_insurance_price.to_s =~ /^[0-9]+$/ %> <%# 返り値が数値か文字列か判別している  %>
       <p class="huyou_p">扶養が超えるまで残り</p>
@@ -59,7 +59,7 @@
   <div class="tax_dependents home">
     <div class="business_title">
       <i class="fas fa-dollar-sign home_icon"></i>
-      <h1>税法上の扶養</h1>
+      <h1>税法上の扶養<span class="popup_help" data-message="<%= simple_format(tax_law_guide) %>">[?]</span></h1>
     </div>
     <% if @tax_calculation_price.to_s =~ /^[0-9]+$/ %> <%# 返り値が数値か文字列か判別している  %>
       <p class="huyou_p">扶養が超えるまで残り</p>
@@ -97,7 +97,7 @@
   <div class="income_year">
     <div class="business_title">
       <i class="fas fa-dollar-sign"></i>
-      <h1>年間所得</h1>
+      <h1>年間所得<span class="popup_help" data-message="<%= simple_format(total_annual_earning_guide2) %>">[?]</span></h1>
     </div>
     <h1 class="year_income">
       <%= annual_income(@income_sub_total_price, @expense_price_all).to_j %>円
