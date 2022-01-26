@@ -1,0 +1,38 @@
+<%= render 'home' %>
+
+<div class="grah">
+  <%= link_to "本業グラフ", user_main_path(current_user, year: now_date_year), class: 'grah_selected' %>
+  <%= link_to "副業グラフ", user_sub_path(current_user, year: now_date_year) %>
+</div>
+<div class="income_content_main_bottom">
+
+  <div class="monthly_income">
+    <div class="monthly_income_header">
+      <p class="month">月</p>
+      <p class="income">収入</p>
+    </div>
+    <% month_array.each do |month| %>
+      <div class="month_part_income_tr">
+        <p class="month"><%= month %>月</p>
+        <% monthly_incomes(@income_sub_total_price,"table").each do |income_month, income| %>
+          <% if month == income_month[1] %>
+            <div class="income_info">
+              <p class="income"><%= income %>円</p>
+              <%= link_to '詳細', shows_user_incomes_path(year: income_month[0], month: income_month[1], is_side_business: false), class: 'income_detail' %>
+            </div>
+            <% break %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="month_income_total">
+      <p class="total">合計</p>
+      <p class="total_income"><%= array_out_price(@income_sub_total_price) %>円</p>
+    </div>
+    
+  </div>
+  
+  <div class="graph_income">
+    <%= column_chart monthly_incomes(@income_sub_total_price,"graph"), id: "column-chart", width: "700px", height: "650px" %>
+  </div>
+</div>

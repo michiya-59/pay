@@ -1,0 +1,106 @@
+<div class="main_income">
+  <i class="fas fa-dollar-sign"></i>
+  <p class="main_income_title">ホーム</p>
+</div>
+
+<% if @income_main_total_price.blank? %>
+  <ul class="error_content">
+    <li class="error_main part_error">
+      まだ本業名が登録されておりません。設定から登録してください。
+    </li>
+  </ul>
+<% elsif @income_sub_total_price.blank? %>
+  <ul class="error_content">
+    <li class="error_main part_error">
+      まだ副業名名が登録されておりません。設定から登録してください。
+    </li>
+  </ul>
+<% end %>
+
+<div class="income_content_main_top">
+  <div class="income_year home">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign home_icon"></i>
+      <h1>年間総収入</h1>
+    </div>
+    <h1 class="year_income">
+      <%= main_sub_total_price(@income_main_total_price, @income_sub_total_price).to_j %>円
+    </h1>
+  </div>
+
+  <div class="income_year home">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign home_icon"></i>
+      <h1>年間総所得</h1>
+    </div>
+    <h1 class="year_income">
+      <%= total_annual_income(@income_main_total_price, @income_sub_total_price, @expense_price_all).to_j %>円
+    </h1>
+  </div>
+</div>
+
+<div class="income_content_main_top_midle">
+  <div class="tax_dependents home">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign home_icon"></i>
+      <h1>社会保険上の扶養</h1>
+    </div>
+    <% if @social_insurance_price.to_s =~ /^[0-9]+$/ %> <%# 返り値が数値か文字列か判別している  %>
+      <p class="huyou_p">扶養が超えるまで残り</p>
+      <h3 class="home_huyou_price"><%= @social_insurance_price.to_j %>円</h3>
+    <% else %>
+      <div class="tax_beyond">
+        <i class="fa fa-exclamation-circle import_icon"></i> 
+        <p class="huyou_p beyond"><%= @social_insurance_price %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="tax_dependents home">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign home_icon"></i>
+      <h1>税法上の扶養</h1>
+    </div>
+    <% if @tax_calculation_price.to_s =~ /^[0-9]+$/ %> <%# 返り値が数値か文字列か判別している  %>
+      <p class="huyou_p">扶養が超えるまで残り</p>
+      <h3 class="home_huyou_price"><%= @tax_calculation_price.to_j %>円</h3>
+    <% else %>
+      <div class="tax_beyond">
+        <i class="fa fa-exclamation-circle import_icon"></i> 
+        <p class="huyou_p beyond"><%= @tax_calculation_price %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="income_content_main_top_bottom">
+  <div class="income_year">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1>年間本業収入</h1>
+    </div>
+    <h1 class="year_income">
+      <%= array_out_price(@income_main_total_price).to_j %>円
+    </h1>
+  </div>
+
+  <div class="income_year">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1>年間副業収入</h1>
+    </div>
+    <h1 class="year_income">
+      <%= array_out_price(@income_sub_total_price).to_j %>円
+    </h1>
+  </div>
+
+  <div class="income_year">
+    <div class="business_title">
+      <i class="fas fa-dollar-sign"></i>
+      <h1>年間所得</h1>
+    </div>
+    <h1 class="year_income">
+      <%= annual_income(@income_sub_total_price, @expense_price_all).to_j %>円
+    </h1>
+  </div>
+</div>

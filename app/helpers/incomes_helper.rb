@@ -20,7 +20,7 @@ module IncomesHelper
     Time.zone.today.strftime('%Y')
   end
 
-  # 年間収入を求めている
+  # 本業または副業の年間収入を求めている
   def array_out_price(income_main_all)
     income_main_all.values.map(&:to_i).sum
   end
@@ -30,17 +30,40 @@ module IncomesHelper
     array_out_price(side_business) - array_out_price(expense)
   end
 
+  # 年間総収入を求めている
+  def main_sub_total_price(main_income, sub_income)
+    array_out_price(main_income) + array_out_price(sub_income)
+  end
+
+  # 年間総所得を求めている
+  def total_annual_income(main_income, sub_income, expense)
+    array_out_price(main_income) + annual_income(sub_income, expense)
+  end
+
+  # 税法上の扶養
   # 税法上の扶養は103万までのため,103万から年間収入を引いている
   def tax_calculation(income_main_all, side_business_income, expense_price_all)
     if side_business_income.present? # 副業収入があった場合
       main_business_incom_total = array_out_price(income_main_all) + annual_income(side_business_income, expense_price_all)
-      income_tax = if main_business_incom_total <= 1_030_000
-                     1_030_000 - main_business_incom_total
-                   else
-                     '103万円を超えて扶養を超えました。'
-                   end
+      if main_business_incom_total <= 1_030_000
+        income_tax = 1_030_000 - main_business_incom_total
+      else
+        income_tax = "103万円を超えて扶養を超えました。"
+      end
     else
       income_tax = 1_030_000 - array_out_price(income_main_all)
+    end
+    income_tax
+  end
+
+  # 社会保険上の扶養
+  # 社会保険上の扶養は130万までのため,130万から年間収入を引いている
+  def social_insurance_tax_calculation(income_main_all, side_business_income)
+    total_social_insurance = 1_300_000 - main_sub_total_price(income_main_all, side_business_income)
+    if total_social_insurance <= 0
+      income_tax = "130万円を超えて社会保険の扶養を超えました。"
+    else
+      income_tax = total_social_insurance
     end
     income_tax
   end
@@ -58,6 +81,7 @@ module IncomesHelper
     i = 1 # ループを回す時の回数を示す数字
     keys = 0 # ハッシュの中身の順番を示す数字
     hash = {}
+    hash1 = {}
     count = monthly_income.count
 
     # 12ケ月文の収入をループで回している。

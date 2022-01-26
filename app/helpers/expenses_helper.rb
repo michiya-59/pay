@@ -6,7 +6,7 @@ module ExpensesHelper
   end
 
   # ハッシュ値からvaluesの値段を一つずつ取り出し,合計を求めているメソッド
-  def array_out_price(_expense_price_all)
+  def array_out_price(income_main_all)
     income_main_all.values.map(&:to_i).sum
   end
 end
