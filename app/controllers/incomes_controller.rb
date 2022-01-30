@@ -4,7 +4,7 @@
 class IncomesController < ApplicationController
   before_action :redirect_when_no_logged_in
   before_action :get_switch_bisiness
-  before_action :total_income, only: [:index, :shows]
+  before_action :total_income, only: %i[index shows]
   before_action :line_judge
   before_action :get_income, only: %i[edit income_confirm_edit update]
   include(IncomesHelper)
