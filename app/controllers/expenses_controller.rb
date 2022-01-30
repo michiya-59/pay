@@ -70,7 +70,7 @@ class ExpensesController < ApplicationController
   end
 
   def part_expenses
-    @expenses = Expense.where(user_id: current_user.id)
+    @expenses = Expense.where(user_id: current_user.id, year: now_date_year)
   end
 
   def expense
