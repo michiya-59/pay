@@ -52,7 +52,7 @@ class ExpensesController < ApplicationController
     @month = params[:month]
     @year = params[:year]
 
-    @monthly_expenses = Expense.where(user_id: current_user.id, year: @year, month: @month)
+    @monthly_expenses = Expense.includes(:expense_category).where(user_id: current_user.id, year: @year, month: @month)
   end
 
   private

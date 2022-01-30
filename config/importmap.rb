@@ -12,3 +12,4 @@ pin 'react', to: 'vendor/react@17.0.2.js'
 pin  'chartkick', to: 'chartkick.js'
 pin  'Chart.bundle', to: 'Chart.bundle.js'
 pin 'jquery', to: 'https://code.jquery.com/jquery-3.6.0.min.js', preload: true
+pin_all_from "app/javascript/controllers", under: "controllers", preload: true
