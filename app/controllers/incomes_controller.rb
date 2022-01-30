@@ -13,10 +13,10 @@ class IncomesController < ApplicationController
     @income = Income.new
     @suppliers = Supplier.where(user_id: current_user.id, is_side_business: @supplier_switch)
     @monthly_income = @incomes.group(:year).group(:month).sum(:price)
-    @is_side_business_income = Income.find_by(user_id: current_user.id, is_side_business: true)
-    @income_sub_total_price = Income.where(user_id: current_user.id, is_side_business: true).group(:year).group(:month).sum(:price)
-    @income_main_total_price = Income.where(user_id: current_user.id, is_side_business: false).group(:year).group(:month).sum(:price)
-    @expense_price_all = Expense.where(user_id: current_user.id).group(:year).group(:month).sum(:price)
+    @is_side_business_income = Income.find_by(user_id: current_user.id, is_side_business: true, year: now_date_year)
+    @income_sub_total_price = Income.where(user_id: current_user.id, is_side_business: true, year: now_date_year).group(:year).group(:month).sum(:price)
+    @income_main_total_price = Income.where(user_id: current_user.id, is_side_business: false, year: now_date_year).group(:year).group(:month).sum(:price)
+    @expense_price_all = Expense.where(user_id: current_user.id, year: now_date_year).group(:year).group(:month).sum(:price)
     @tax_calculation_price = tax_calculation(@income_main_total_price, @income_sub_total_price, @expense_price_all)
   end
 
@@ -91,7 +91,7 @@ class IncomesController < ApplicationController
   end
 
   def total_income
-    @incomes = Income.where(user_id: current_user.id, is_side_business: @supplier_switch)
+    @incomes = Income.where(user_id: current_user.id, is_side_business: @supplier_switch, year: now_date_year)
   end
 
   def line_judge
