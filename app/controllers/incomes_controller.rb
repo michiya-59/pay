@@ -4,7 +4,7 @@
 class IncomesController < ApplicationController
   before_action :redirect_when_no_logged_in
   before_action :get_switch_bisiness
-  before_action :total_income
+  before_action :total_income, only: %i[index shows]
   before_action :line_judge
   before_action :get_income, only: %i[edit income_confirm_edit update]
   include(IncomesHelper)
@@ -13,10 +13,10 @@ class IncomesController < ApplicationController
     @income = Income.new
     @suppliers = Supplier.where(user_id: current_user.id, is_side_business: @supplier_switch)
     @monthly_income = @incomes.group(:year).group(:month).sum(:price)
-    @is_side_business_income = Income.find_by(user_id: current_user.id, is_side_business: true, year: now_date_year)
-    @income_sub_total_price = Income.where(user_id: current_user.id, is_side_business: true, year: now_date_year).group(:year).group(:month).sum(:price)
-    @income_main_total_price = Income.where(user_id: current_user.id, is_side_business: false, year: now_date_year).group(:year).group(:month).sum(:price)
-    @expense_price_all = Expense.where(user_id: current_user.id, year: now_date_year).group(:year).group(:month).sum(:price)
+    @is_side_business_income = Income.find_by(user_id: current_user.id, is_side_business: true)
+    @income_sub_total_price = Income.where(user_id: current_user.id, is_side_business: true).group(:year).group(:month).sum(:price)
+    @income_main_total_price = Income.where(user_id: current_user.id, is_side_business: false).group(:year).group(:month).sum(:price)
+    @expense_price_all = Expense.where(user_id: current_user.id).group(:year).group(:month).sum(:price)
     @tax_calculation_price = tax_calculation(@income_main_total_price, @income_sub_total_price, @expense_price_all)
   end
 
@@ -69,7 +69,7 @@ class IncomesController < ApplicationController
     @year = params[:year]
     @supplier_business = params[:is_side_business]
 
-    @monthly_incomes = Income.where(user_id: current_user.id, is_side_business: @supplier_business, year: @year, month: @month)
+    @monthly_incomes = Income.includes(:supplier).where(user_id: current_user.id, is_side_business: @supplier_business, year: @year, month: @month)
   end
 
   private
@@ -79,7 +79,7 @@ class IncomesController < ApplicationController
   end
 
   def set_income_params_supplier
-    params.require(:supplier).permit(:month, :price, :user_id, :is_side_business, :year, :price)
+    params.require(:supplier).permit(:supplier_id)
   end
 
   def post_params
