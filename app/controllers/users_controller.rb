@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :redirect_when_no_logged_in
+  before_action :redirect_when_no_logged_in, only: [:main, :sub]
   before_action :income_info_all, only: %i[main sub]
 
   def new
