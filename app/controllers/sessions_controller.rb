@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:session][:password])
       login(user)
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to suppliers_path(is_side_business: false)
+      redirect_to user_main_path(current_user)
     else
       flash.now[:danger] = '正しくログイン情報を入力してください'
       render 'new'
