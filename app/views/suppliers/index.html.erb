@@ -11,7 +11,7 @@
     <div class="id_name top">
         <p class="id id_main">ID</p>
         <p class="id">名称</p>
-        <%= link_to '新規追加', new_user_supplier_path(current_user, is_side_business: @supplier_switch), class: 'supplier_new' %>
+        <%= link_to '新規追加', new_supplier_path(is_side_business: @supplier_switch), class: 'supplier_new' %>
     </div>
     
     <% if @supplier_switch == "false" %>
@@ -21,11 +21,11 @@
                     <p class="id id_main"><%= supplier.id %></p>
                     <p class="id"><%= supplier.name %></p>
                     <div class="destroy_btn">
-                        <%= button_to user_supplier_path(current_user,supplier), method: :delete, class: 'supplier_new delete_btn'  do %>
+                        <%= button_to supplier_path(supplier, is_side_business: @supplier_switch), method: :delete, class: 'supplier_new delete_btn'  do %>
                             <span class="sign_in_out">削除</span>
                         <% end %>
                     </div>
-                    <%= link_to '編集', edit_user_supplier_path(current_user,supplier), class: 'supplier_new edit_btn' %>
+                    <%= link_to '編集', edit_supplier_path(supplier, is_side_business: @supplier_switch), class: 'supplier_new edit_btn' %>
                 </div>
             <% end %>
         <% else %>
@@ -38,11 +38,11 @@
                     <p class="id id_main"><%= supplier.id %></p>
                     <p class="id"><%= supplier.name %></p>
                     <div class="destroy_btn">
-                        <%= button_to user_supplier_path(current_user,supplier), method: :delete, class: 'supplier_new delete_btn'  do %>
+                        <%= button_to supplier_path(supplier, is_side_business: @supplier_switch), method: :delete, class: 'supplier_new delete_btn'  do %>
                             <span class="sign_in_out">削除</span>
                         <% end %>
                     </div>
-                    <%= link_to '編集', edit_user_supplier_path(current_user,supplier), class: 'supplier_new edit_btn' %>
+                    <%= link_to '編集', edit_supplier_path(supplier, is_side_business: @supplier_switch), class: 'supplier_new edit_btn' %>
                 </div>
             <% end %>
         <% else %>

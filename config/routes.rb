@@ -5,26 +5,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :suppliers, only: [:index]
   resources :users do
     get 'main'
     get 'sub'
-
-    resources :suppliers, only: %i[show edit update destroy new create] do
-      post :suppliers_confirm, action: :supplier_confirm_new, on: :new
-      member do
-        post :suppliers_confirm_edit, action: :suppliers_confirm_edit
-      end
-    end
+    root 'users#main'
 
     post :user_confirm, action: :user_confirm_new, on: :new
-
-    resources :expense_categories do
-      post :expense_categories_confirm, action: :expense_categories_confirm_new, on: :new
-      member do
-        post :expense_categories_confirm_edit, action: :expense_categories_confirm_edit
-      end
-    end
 
     resources :incomes do
       collection do
@@ -44,5 +30,18 @@ Rails.application.routes.draw do
       end
     end
   end
-  root 'users#main'
+  
+  resources :suppliers, only: %i[index show edit update destroy new create] do
+    post :suppliers_confirm, action: :supplier_confirm_new, on: :new
+    member do
+      post :suppliers_confirm_edit, action: :suppliers_confirm_edit
+    end
+  end
+
+  resources :expense_categories do
+    post :expense_categories_confirm, action: :expense_categories_confirm_new, on: :new
+    member do
+      post :expense_categories_confirm_edit, action: :expense_categories_confirm_edit
+    end
+  end
 end

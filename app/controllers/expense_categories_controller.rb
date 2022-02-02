@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ExpenseCategoriesController < ApplicationController
-  before_action :set_expense_category
+  before_action :redirect_when_no_logged_in
+  before_action :set_expense_category, only: [:edit, :destroy]
 
   def index
     @expenses = ExpenseCategory.all.order(id: 'ASC')
@@ -20,7 +21,7 @@ class ExpenseCategoriesController < ApplicationController
   def create
     @expense = ExpenseCategory.new(set_expense_params)
     if @expense.save
-      redirect_to user_expense_categories_url(current_user)
+      redirect_to expense_categories_path
       flash[:success] = '登録完了しました'
     end
   end
@@ -33,7 +34,7 @@ class ExpenseCategoriesController < ApplicationController
 
   def update
     @expense.update(set_expense_params)
-    redirect_to user_expense_categories_url(current_user)
+    redirect_to expense_categories_path
     flash[:success] = '編集完了しました'
   end
 
@@ -44,6 +45,6 @@ class ExpenseCategoriesController < ApplicationController
   end
 
   def set_expense_category
-    @expense = ExpenseCategory.find_by(id: current_user)
+    @expense = ExpenseCategory.find(params[:id])
   end
 end

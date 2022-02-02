@@ -8,7 +8,7 @@
   <h2 class="step3">STEP3 完了</h2>
 </div>
 
-<%= form_with(url: expense_categories_confirm_edit_user_expense_category_path(current_user,@expense),local: true) do |f| %>
+<%= form_with(url: expense_categories_confirm_edit_expense_category_path(@expense),local: true) do |f| %>
   <div class="entry_form_supplier">
     <p class="login_form_detail">経費名称<span class="form_span">必須</sapn></p>
     <%= f.text_field :name, class: "form_input", :value => @expense.name %>
