@@ -7,7 +7,7 @@
 </div>
 
 <p class="login_info_msg">確認情報</p>
-<%= form_with(model: @expense, url: expense_category_path(params[:id]), local: true) do |f| %>
+<%= form_with(model: @expense, url: expense_category_path(@expense), local: true) do |f| %>
   <div class="entry_form_supplier">
     <p class="login_form_detail">経費名称<span class="form_span">必須</sapn></p>
     <p class="entry_form_info"><%= @expense_name %></p>

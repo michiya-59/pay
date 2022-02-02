@@ -15,7 +15,7 @@
                 <p class="id id_main"><%= expense.id %></p>
                 <p class="id"><%= expense.name %></p>
 
-                <%= link_to '編集', edit_expense_category_path(expense), class: 'supplier_new edit_btn' %>
+                <%= link_to '編集', edit_expense_category_path(expense), class: 'supplier_new edit_btn', style: 'margin-left:auto;' %>
             </div>
         <% end %>
     <% else %>

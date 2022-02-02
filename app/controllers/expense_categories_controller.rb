@@ -2,7 +2,7 @@
 
 class ExpenseCategoriesController < ApplicationController
   before_action :redirect_when_no_logged_in
-  before_action :set_expense_category, only: [:edit, :destroy]
+  before_action :set_expense_category, only: %i[edit update expense_categories_confirm_edit]
 
   def index
     @expenses = ExpenseCategory.all.order(id: 'ASC')

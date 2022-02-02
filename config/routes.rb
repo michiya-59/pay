@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
   resources :suppliers, only: %i[index show edit update destroy new create] do
     post :suppliers_confirm, action: :supplier_confirm_new, on: :new
     member do
