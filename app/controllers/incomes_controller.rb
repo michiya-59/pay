@@ -27,14 +27,14 @@ class IncomesController < ApplicationController
     @income = Income.new(set_income_params.merge(set_income_params_supplier))
     case @income.is_side_business
     when false
-      redirect_to user_incomes_path(current_user, is_side_business: false)
+      redirect_to incomes_path(is_side_business: false)
       if @income.save
         flash[:success] = '本業収入を登録しました'
       else
         flash[:error] = @income.errors.full_messages
       end
     when true
-      redirect_to user_incomes_path(current_user, is_side_business: true)
+      redirect_to incomes_path(is_side_business: true)
       if @income.save
         flash[:success] = '副業収入を登録しました'
       else
@@ -49,14 +49,14 @@ class IncomesController < ApplicationController
     @income_price = params[:price]
     @income_price = params[:price].tr!('０-９', '0-9') if /\A[０-９]+\z/.match?(@income_price.to_s) # 全角数字だった場合半角数字に変換している処理
     if @income_price.blank?
-      redirect_to edit_user_income_path(current_user, is_side_business: @income.is_side_business)
+      redirect_to edit_income_path(income, is_side_business: @income.is_side_business)
       flash[:error] = "#{supplier_which?(params[:is_side_business])}収入を入力してください"
     end
   end
 
   def update
     @income.update(post_params)
-    redirect_to shows_user_incomes_path(current_user, is_side_business: @income.is_side_business, month: @income.month, year: @income.year)
+    redirect_to shows_incomes_path(is_side_business: @income.is_side_business, month: @income.month, year: @income.year)
     flash[:success] = '編集完了しました'
   end
 

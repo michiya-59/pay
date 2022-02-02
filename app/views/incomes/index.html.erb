@@ -32,7 +32,7 @@
         <%= supplier_which?(@supplier_switch) %>収入 入力
       </h1>
     </div>
-    <%= form_with(model: @income, url: user_incomes_path(current_user), local: true, class: 'business_form main_income_form') do |f| %>
+    <%= form_with(model: @income, url: incomes_path, local: true, class: 'business_form main_income_form') do |f| %>
       <div class="business_top">
         <%= f.select :month, [["1月",1],["2月",2],["3月",3],["4月",4],["5月",5],["6月",6],["7月",7],["8月",8],["9月",9],["10月",10],["11月",11],["12月",12]] %>
         <%= fields_for :supplier do |supplier_f| %>
@@ -159,7 +159,7 @@
           <% if month == income_month[1] %>
             <div class="income_info">
               <p class="income"><%= income %>円</p>
-              <%= link_to '詳細', shows_user_incomes_path(current_user, year: income_month[0], month: income_month[1], is_side_business: @supplier_switch), class: 'income_detail' %>
+              <%= link_to '詳細', shows_incomes_path(year: income_month[0], month: income_month[1], is_side_business: @supplier_switch), class: 'income_detail' %>
             </div>
             <% break %>
           <% end %>
