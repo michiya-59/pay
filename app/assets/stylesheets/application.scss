@@ -11,8 +11,7 @@ a:active{
   text-decoration: none !important;
 }
 a:hover{
-  opacity: 0.6;
-  color: black;
+  color: #515151;
 }
 
 @mixin box_sizing {
@@ -555,7 +554,7 @@ a:hover{
     font-weight: 100;
     padding: 0 28px;
     height: 22px;
-    margin: 0 0 0 6px;
+    margin: 0 0 0 10px;
 
   }
 }

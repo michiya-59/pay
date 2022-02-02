@@ -10,8 +10,8 @@
         <%= link_to '副業の名称', suppliers_path(is_side_business: true) %>
     <% end %>
     <% if @switch_line == 'expenses' %>
-        <%= link_to '経費の名称', user_expense_categories_path(current_user), class: 'setting_a' %>
+        <%= link_to '経費の名称', expense_categories_path, class: 'setting_a' %>
     <% else %>
-        <%= link_to '経費の名称', user_expense_categories_path(current_user) %>
+        <%= link_to '経費の名称', expense_categories_path %>
     <% end %>
 </div>

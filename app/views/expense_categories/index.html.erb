@@ -7,22 +7,18 @@
     <div class="id_name top">
         <p class="id id_main">ID</p>
         <p class="id">名称</p>
-        <%= link_to '新規追加', new_user_expense_category_path(current_user), class: 'supplier_new' %>
+        <%= link_to '新規追加', new_expense_category_path, class: 'supplier_new' %>
     </div>
     <% if @expenses.present? %>
         <% @expenses.each do |expense| %>
             <div class="id_name">
                 <p class="id id_main"><%= expense.id %></p>
                 <p class="id"><%= expense.name %></p>
-                <div class="destroy_btn">
-                        <%= button_to user_expense_category_path(current_user,expense), method: :delete, class: 'supplier_new delete_btn'  do %>
-                            <span class="sign_in_out">削除</span>
-                        <% end %>
-                    </div>
-                <%= link_to '編集', edit_user_expense_category_path(current_user,expense), class: 'supplier_new edit_btn' %>
+
+                <%= link_to '編集', edit_expense_category_path(expense), class: 'supplier_new edit_btn', style: 'margin-left:auto;' %>
             </div>
         <% end %>
     <% else %>
-        <p class="not_supplier">まだ本業名が登録されてません</p>
+        <p class="not_supplier">まだ経費名が登録されてません</p>
     <% end %>
 </div>
