@@ -44,4 +44,5 @@ Rails.application.routes.draw do
       end
     end
   end
+  root 'users#main'
 end
