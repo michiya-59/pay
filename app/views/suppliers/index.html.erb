@@ -9,7 +9,7 @@
         <% end %>
     </h1>
     <div class="id_name top">
-        <p class="id">ID</p>
+        <p class="id id_main">ID</p>
         <p class="id">名称</p>
         <%= link_to '新規追加', new_user_supplier_path(current_user, is_side_business: @supplier_switch), class: 'supplier_new' %>
     </div>
@@ -18,7 +18,7 @@
         <% if @suppliers_main.present? %>
             <% @suppliers_main.each do |supplier| %>
                 <div class="id_name">
-                    <p class="id"><%= supplier.id %></p>
+                    <p class="id id_main"><%= supplier.id %></p>
                     <p class="id"><%= supplier.name %></p>
                     <div class="destroy_btn">
                         <%= button_to user_supplier_path(current_user,supplier), method: :delete, class: 'supplier_new delete_btn'  do %>
@@ -35,7 +35,7 @@
         <% if @suppliers_sub.present? %>
             <% @suppliers_sub.each do |supplier| %>
                 <div class="id_name">
-                    <p class="id"><%= supplier.id %></p>
+                    <p class="id id_main"><%= supplier.id %></p>
                     <p class="id"><%= supplier.name %></p>
                     <div class="destroy_btn">
                         <%= button_to user_supplier_path(current_user,supplier), method: :delete, class: 'supplier_new delete_btn'  do %>

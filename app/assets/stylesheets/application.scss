@@ -10,6 +10,10 @@ body{
 a:active{
   text-decoration: none !important;
 }
+a:hover{
+  opacity: 0.6;
+  color: black;
+}
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -466,11 +470,11 @@ a:active{
 
 // ホームのスタイル
   .home{
-    width: 50% !important;
+    width: 50%;
   }
   .home_icon{
-    margin-left: 10px !important;
-    width: 10% !important;
+    margin-left: 10px;
+    width: 10%;
   }
 
   .grah{
@@ -596,6 +600,10 @@ a:active{
   margin-left: auto;
 }
 
+.accordion{
+  display: none;
+}
+
 //設定画面新規登録のスタイル
 .new_supplier_name{
   font-size: 40px;
@@ -650,7 +658,7 @@ a:active{
   font-size: 22px;
 }
 .import_icon{
-  margin-left: 12% !important;
+  margin-left: 12%;
 }
 
 .income_content_main_top, .income_content_main_top_bottom, .income_content_main_top_midle{
@@ -693,7 +701,7 @@ a:active{
     color: $main_color;
   }
   h1{
-    font-size: 25px;
+    font-size: 19px;
     margin: 0 0 17px 0;
     color: white;
     width: 65%;

@@ -5,14 +5,14 @@
         経費名一覧
     </h1>
     <div class="id_name top">
-        <p class="id">ID</p>
+        <p class="id id_main">ID</p>
         <p class="id">名称</p>
         <%= link_to '新規追加', new_user_expense_category_path(current_user), class: 'supplier_new' %>
     </div>
     <% if @expenses.present? %>
         <% @expenses.each do |expense| %>
             <div class="id_name">
-                <p class="id"><%= expense.id %></p>
+                <p class="id id_main"><%= expense.id %></p>
                 <p class="id"><%= expense.name %></p>
                 <div class="destroy_btn">
                         <%= button_to user_expense_category_path(current_user,expense), method: :delete, class: 'supplier_new delete_btn'  do %>

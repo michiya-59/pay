@@ -1,6 +1,6 @@
 <div class="header">
   <% if logged_in? %>
-    <%= link_to "#", class: "header_left" do %>
+    <%= link_to user_main_path(current_user), class: "header_left" do %>
       <img src="/assets/logo.png" alt="">
       <p class="header_left_p">Payroll<span>support</span></p>
     <% end %>
@@ -82,4 +82,56 @@
       <% end %>
     <% end %>
   </div>
+  
+  <dl class="accordion js-accordion">
+    <div class="accordion__item js-accordion-trigger">
+      <dt class="accordion__title">メニュー</dt>
+      <dd class="accordion__content">
+          <% if logged_in? %>
+            <%= link_to 'ホーム', user_main_path(current_user, year: now_date_year), class: 'media_link_a start'%>
+          <% else %>
+            <span class="media_link_a none start">ホーム</span>
+          <% end %>
+
+          <% if logged_in? %>
+            <%= link_to '本業収入',user_incomes_path(current_user, is_side_business: false), class: 'media_link_a' %>
+          <% else %>
+            <span class="nav none">本業収入</span>
+          <% end %>
+
+          <% if logged_in? %>
+            <%= link_to '副業収入', user_incomes_path(current_user, is_side_business: true), class: 'media_link_a'%>
+          <% else %>
+            <span class="nav none">副業収入</span>
+          <% end %>
+
+          <% if logged_in? %>
+            <%= link_to '経費', user_expenses_path(current_user), class: 'media_link_a end'%>
+          <% else %>
+            <span class="nav none end">経費</span>
+          <% end %>
+
+          <% if logged_in? %>
+            <%= link_to suppliers_path(is_side_business: false), class: 'media_link_a setting_link' do %>
+              <i class="fas fa-cog"></i>
+              <p class="sign_in_out">設定</p>
+            <% end %>
+          <% else %>
+            <i class="fas fa-cog none"></i>
+          <% end %>
+
+          <% if logged_in? %>
+            <%= button_to logout_path, method: :delete, class: 'log_in_out_btn'  do %>
+              <i class="fas fa-sign-out-alt"></i>
+              <p class="sign_in_out">ログアウト</p>
+            <% end %>
+          <% else %>
+            <%= link_to login_path, class: 'log_in_out_btn' do %>
+              <i class="fas fa-sign-in-alt"></i>
+              <p class="sign_in_out">ログイン</p>
+            <% end %>
+          <% end %>
+      </dd>
+    </div>
+  </dl>
 </div>

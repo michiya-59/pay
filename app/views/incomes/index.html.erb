@@ -1,6 +1,5 @@
 
 <div class="main_income">
-  <i class="fas fa-dollar-sign"></i>
   <p class="main_income_title">
     <%= supplier_which?(@supplier_switch) %>収入
   </p>
@@ -28,12 +27,12 @@
 <div class="income_content_main_top">
   <div class="income_content">
     <div class="business_title">
-      <i class="fas fa-dollar-sign"></i>
-      <h1>
+      <i class="fas fa-dollar-sign respon_icon_income"></i>
+      <h1 class="respon_h1">
         <%= supplier_which?(@supplier_switch) %>収入 入力
       </h1>
     </div>
-    <%= form_with(model: @income, url: user_incomes_path(current_user), local: true, class: 'business_form') do |f| %>
+    <%= form_with(model: @income, url: user_incomes_path(current_user), local: true, class: 'business_form main_income_form') do |f| %>
       <div class="business_top">
         <%= f.select :month, [["1月",1],["2月",2],["3月",3],["4月",4],["5月",5],["6月",6],["7月",7],["8月",8],["9月",9],["10月",10],["11月",11],["12月",12]] %>
         <%= fields_for :supplier do |supplier_f| %>
