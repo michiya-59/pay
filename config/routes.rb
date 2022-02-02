@@ -12,15 +12,6 @@ Rails.application.routes.draw do
 
     post :user_confirm, action: :user_confirm_new, on: :new
 
-    resources :incomes do
-      collection do
-        get 'shows'
-      end
-      member do
-        post :income_confirm_edit, action: :income_confirm_edit
-      end
-    end
-
     resources :expenses do
       collection do
         get 'shows'
@@ -28,6 +19,15 @@ Rails.application.routes.draw do
       member do
         post :expense_confirm_edit, action: :expense_confirm_edit
       end
+    end
+  end
+
+  resources :incomes do
+    collection do
+      get 'shows'
+    end
+    member do
+      post :income_confirm_edit, action: :income_confirm_edit
     end
   end
 

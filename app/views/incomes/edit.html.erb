@@ -18,7 +18,7 @@
   </ul>
 <% end %>
 
-<%= form_with(url: income_confirm_edit_user_income_path(current_user, @income), local: true) do |f| %>
+<%= form_with(url: income_confirm_edit_income_path(@income), local: true) do |f| %>
   <div class="entry_form_supplier">
     <p class="login_form_detail">
       <%= supplier_which?(@supplier_switch) %>収入
