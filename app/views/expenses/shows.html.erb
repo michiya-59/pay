@@ -38,9 +38,9 @@
         <div class="month_part_income_tr part_income_tr">
           <p class="part_income_info"><%= monthly_expense.price.to_j %>円</p>
           <div class="income_info right">
-            <p class="part_income_name_info"><%= monthly_expense.expense_category.name %></p>
+            <p class="part_income_name_info"><%= expense_name(monthly_expense.id).name %></p>
             <p class="part_income_create_info"><%= monthly_expense.created_at.strftime('%Y/%m/%d') %></p>
-            <%= link_to '変更', edit_user_expense_path(current_user, monthly_expense), class: 'income_detail update' %>
+            <%= link_to '変更', edit_expense_path(monthly_expense), class: 'income_detail update' %>
           </div>
         </div>
       <% end %>

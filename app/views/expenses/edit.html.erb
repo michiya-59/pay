@@ -18,13 +18,13 @@
   </ul>
 <% end %>
 
-<%= form_with(url: expense_confirm_edit_user_expense_path(current_user, @expense), local: true) do |f| %>
+<%= form_with(url: expense_confirm_edit_expense_path(@expense), local: true) do |f| %>
   <div class="entry_form_supplier">
     <p class="login_form_detail">経費<span class="form_span">必須</sapn></p>
     <%= f.hidden_field :month, :value => @expense.month %>
     <%= f.hidden_field :year, :value => @expense.year %>
     <%= f.hidden_field :user_id, :value => @expense.user_id %>
-    <%= f.hidden_field :expense_category_id, :value => @expense.expense_category_id %>
+    <%= f.hidden_field :expense_category_id, :value => @expense.expenses_category_id %>
     <%= f.text_field :price, class: "form_input", :value => @expense.price %>円
     <div class="entry_button_mass">
       <%= link_to '戻る', :back, class: "entry_button" %>

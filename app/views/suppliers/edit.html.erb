@@ -1,4 +1,4 @@
-<h1 class="new_supplier_name">本業名 変更</h1>
+<h1 class="new_supplier_name"><%= supplier_which?(@supplier_switch) %>名 変更</h1>
 
 <div class="entry_top">
   <h2 class="step1" style="background: rgba(0,112,108,0.8);color: white;">STEP1 入力</h2><div class="step1_triangle" style="border-left: 25px solid rgba(0,112,108,0.8);"></div>
@@ -10,7 +10,7 @@
 
 <%= form_with(url: suppliers_confirm_edit_user_supplier_path(current_user,@supplier),local: true) do |f| %>
   <div class="entry_form_supplier">
-    <p class="login_form_detail">本業名称<span class="form_span">必須</sapn></p>
+    <p class="login_form_detail"><%= supplier_which?(@supplier_switch) %>名称<span class="form_span">必須</sapn></p>
     <%= f.text_field :name, class: "form_input", :placeholder => "例)コンビニ", :value => @supplier.name %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <% if @supplier_switch == 'false' %>
