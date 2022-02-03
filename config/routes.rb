@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  root 'users#main'
   resources :users do
     get 'main'
     get 'sub'
-    root 'users#main'
 
     post :user_confirm, action: :user_confirm_new, on: :new
   end
