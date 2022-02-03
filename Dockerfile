@@ -1,5 +1,5 @@
 #FROM(フロム)はDocker に対して ベースとなるRubyイメージを指定する
-FROM ruby:3.0.0
+FROM ruby:3.0.2
 #run(ラン)はdocker-compose buildコマンドで実行される
 #Railsの起動に必要となるnodejsをインストールする
 #apt-getコマンドはUbuntuパッケージ管理システム＝APTライブラリを利用してパッケージ操作・管理するコマンド
