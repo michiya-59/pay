@@ -12,14 +12,14 @@ Rails.application.routes.draw do
 
     post :user_confirm, action: :user_confirm_new, on: :new
   end
-  
+
   resources :suppliers, only: %i[index show edit update destroy new create] do
     post :suppliers_confirm, action: :supplier_confirm_new, on: :new
     member do
       post :suppliers_confirm_edit, action: :suppliers_confirm_edit
     end
   end
-  
+
   resources :expense_categories do
     post :expense_categories_confirm, action: :expense_categories_confirm_new, on: :new
     member do
