@@ -18,8 +18,9 @@ class ExpensesController < ApplicationController
   def new; end
 
   def create
+    @expense_categories = ExpenseCategory.where(user_id: current_user.id)
     @expense = Expense.new(set_expense_params.merge(set_expense_category))
-    redirect_to user_expenses_path(current_user)
+    redirect_to expenses_path
     if @expense.save
       flash[:success] = '経費を登録しました'
     else
@@ -33,14 +34,14 @@ class ExpensesController < ApplicationController
     @expense_price = params[:price]
     @expense_price = params[:price].tr!('０-９', '0-9') if /\A[０-９]+\z/.match?(@expense_price.to_s) # 全角数字だった場合半角数字に変換している処理
     if @expense_price.blank?
-      redirect_to edit_user_expense_path(current_user)
+      redirect_to edit_expense_path(params[:id])
       flash[:error] = '経費を正しく収入を入力してください'
     end
   end
 
   def update
     @expense.update(set_expense)
-    redirect_to shows_user_expenses_path(current_user, month: @expense.month, year: @expense.year)
+    redirect_to shows_expenses_path(month: @expense.month, year: @expense.year)
     flash[:success] = '編集完了しました'
   end
 
@@ -52,7 +53,7 @@ class ExpensesController < ApplicationController
     @month = params[:month]
     @year = params[:year]
 
-    @monthly_expenses = Expense.includes(:expense_category).where(user_id: current_user.id, year: @year, month: @month)
+    @monthly_expenses = Expense.where(user_id: current_user.id, year: @year, month: @month)
   end
 
   private
@@ -62,11 +63,11 @@ class ExpensesController < ApplicationController
   end
 
   def set_expense_category
-    params.require(:expense_category).permit(:expense_category_id)
+    params.require(:expense_category).permit(:expenses_category_id)
   end
 
   def set_expense
-    params.require(:expense).permit(:month, :price, :user_id, :year, :expense_category_id)
+    params.require(:expense).permit(:month, :price, :user_id, :year, :expenses_category_id)
   end
 
   def part_expenses

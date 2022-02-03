@@ -11,24 +11,6 @@ Rails.application.routes.draw do
     root 'users#main'
 
     post :user_confirm, action: :user_confirm_new, on: :new
-
-    resources :expenses do
-      collection do
-        get 'shows'
-      end
-      member do
-        post :expense_confirm_edit, action: :expense_confirm_edit
-      end
-    end
-  end
-
-  resources :incomes do
-    collection do
-      get 'shows'
-    end
-    member do
-      post :income_confirm_edit, action: :income_confirm_edit
-    end
   end
 
   resources :suppliers, only: %i[index show edit update destroy new create] do
@@ -42,6 +24,24 @@ Rails.application.routes.draw do
     post :expense_categories_confirm, action: :expense_categories_confirm_new, on: :new
     member do
       post :expense_categories_confirm_edit, action: :expense_categories_confirm_edit
+    end
+  end
+
+  resources :incomes do
+    collection do
+      get 'shows'
+    end
+    member do
+      post :income_confirm_edit, action: :income_confirm_edit
+    end
+  end
+
+  resources :expenses do
+    collection do
+      get 'shows'
+    end
+    member do
+      post :expense_confirm_edit, action: :expense_confirm_edit
     end
   end
 end

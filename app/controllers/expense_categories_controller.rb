@@ -5,7 +5,7 @@ class ExpenseCategoriesController < ApplicationController
   before_action :set_expense_category, only: %i[edit update expense_categories_confirm_edit]
 
   def index
-    @expenses = ExpenseCategory.all.order(id: 'ASC')
+    @expenses = ExpenseCategory.where(user_id: current_user.id).order(id: 'ASC')
     @switch_line = 'expenses'
   end
 

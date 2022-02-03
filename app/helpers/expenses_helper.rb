@@ -9,4 +9,8 @@ module ExpensesHelper
   def array_out_price(income_main_all)
     income_main_all.values.map(&:to_i).sum
   end
+
+  def expense_name(expense_id)
+    ExpenseCategory.find_by(id: expense_id)
+  end
 end
