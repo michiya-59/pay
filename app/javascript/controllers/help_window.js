@@ -2,7 +2,7 @@
 $(function(){
   $(".popup_help").mouseover(function() {
     var marginTop = 0;
-    var marginLeft = 35;
+    var marginLeft = -110;
     var speed = 130;
     var popupObj = $(".popup_help_window");
 
@@ -29,7 +29,7 @@ $(function(){
 $(function(){
   $(".popup_help").mouseover(function() {
     var marginTop = 0;
-    var marginLeft = 35;
+    var marginLeft = -110;
     var speed = 130;
     var popupObj = $(".popup_help_window");
 
