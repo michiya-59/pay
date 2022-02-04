@@ -14,7 +14,7 @@
   <div class="income_year home">
     <div class="business_title">
       <i class="fas fa-dollar-sign home_icon"></i>
-      <h1>年間総収入<span class="popup_help" data-message="<%= simple_format(total_annual_income_guide) %>">[?]</span></h1>
+      <h1>年間総収入<span class="popup_help" data-message="<%= simple_format(total_annual_income_guide) %>" ontouchstart="">[?]</span></h1>
     </div>
     <h1 class="year_income">
       <%= main_sub_total_price(@income_main_total_price, @income_sub_total_price).to_j %>円
@@ -24,7 +24,7 @@
   <div class="income_year home">
     <div class="business_title">
       <i class="fas fa-dollar-sign home_icon"></i>
-      <h1>年間総所得<span class="popup_help" data-message="<%= simple_format(total_annual_earning_guide) %>">[?]</span></h1>
+      <h1>年間総所得<span class="popup_help" data-message="<%= simple_format(total_annual_earning_guide) %>" ontouchstart="">[?]</span></h1>
     </div>
     <h1 class="year_income">
       <%= total_annual_income(@income_main_total_price, @income_sub_total_price, @expense_price_all).to_j %>円
