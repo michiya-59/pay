@@ -112,12 +112,12 @@
           <% end %>
 
           <% if logged_in? %>
-            <%= link_to suppliers_path(is_side_business: false), class: 'media_link_a setting_link', style: 'pointer-events: none;' do %>
+            <%= link_to suppliers_path(is_side_business: false), class: 'media_link_a setting_link' do %>
               <i class="fas fa-cog"></i>
               <p class="sign_in_out">設定</p>
             <% end %>
           <% else %>
-            <%= link_to "#", class: 'media_link_a none setting_link' do %>
+            <%= link_to "#", class: 'media_link_a none setting_link', style: 'pointer-events: none;' do %>
               <i class="fas fa-cog"></i>
               <p class="sign_in_out">設定</p>
             <% end %>

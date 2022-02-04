@@ -159,7 +159,11 @@
           <% if month == income_month[1] %>
             <div class="income_info">
               <p class="income"><%= income %>円</p>
-              <%= link_to '詳細', shows_incomes_path(year: income_month[0], month: income_month[1], is_side_business: @supplier_switch), class: 'income_detail' %>
+              <% if income == "0" %>
+                <%= link_to '詳細', shows_incomes_path(year: income_month[0], month: income_month[1], is_side_business: false), class: 'income_detail', style: 'pointer-events: none; opacity: 0.4;' %>
+              <% else %>
+                <%= link_to '詳細', shows_incomes_path(year: income_month[0], month: income_month[1], is_side_business: false), class: 'income_detail' %>
+              <% end %>
             </div>
             <% break %>
           <% end %>
