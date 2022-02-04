@@ -152,9 +152,18 @@ window.addEventListener('load', () => {
   var window_w = window.innerWidth;
   
   var grah = document.getElementById('column-chart');
+  var grah_size = grah.style.width
+  var grah_size_h = grah.style.height
+  grah.style.cssText = ""
+  console.log(grah);
+  console.log(grah_size);
+  console.log(grah_size_h);
+
   var cavas = grah.querySelector('canvas');
   // var canvas_wi = parseInt(cavas.style.width);
   if (window_w <= 540){
+    grah.style.width = 324 + "px"
+    grah.style.height = 270 + "px"
     cavas.style.width = 324 + "px"
     cavas.style.height = 270 + "px"
   }

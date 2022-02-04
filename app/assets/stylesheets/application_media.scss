@@ -36,16 +36,16 @@ a:active{
   }
   // ヘッダー画面のスタイル
   .header{
-    height: 30px ;
+    height: 45px ;
     padding: 5px 15px 0 15px ;
     .header_left{
       width: 24% ;
       img{
-        height: 20px ; 
+        height: 32px ; 
       }
       .header_left_p{
-        font-size: 10px ;
-        line-height: 7px ;
+        font-size: 13px;
+        line-height: 12px;
         margin: 3px 0 0 5px ;
       }
     }
@@ -96,6 +96,7 @@ a:active{
     width: 95px;
     cursor: pointer;
     color: #515151;
+    line-height: 33px;
   }
 
   /* (+)アイコン */
@@ -178,6 +179,15 @@ a:active{
       margin-right: 7px;
       margin-left: 19px;
     }
+    .fas.fa-sign-in-alt{
+      margin-right: 7px;
+      margin-left: 30px;
+      line-height: 17px;
+    }
+  }
+  .sign_in_out {
+    font-size: 10px;
+    color: #515151;
   }
 
   .accordion__content.is-open {
@@ -384,6 +394,15 @@ a:active{
       margin: 10px 0 0 0;
     }
   }
+  .huyou_p{
+    font-size: 10px;
+    margin: 5px 0;
+  }
+  .home_huyou_price, .huyou_price{
+    font-size: 10px;
+    margin: 0;
+  }
+  
 // ホーム画面のスタイル終了
 
 // 各月の詳細画面(action:shows)
