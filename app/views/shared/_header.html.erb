@@ -96,32 +96,35 @@
           <% if logged_in? %>
             <%= link_to '本業収入',incomes_path(is_side_business: false), class: 'media_link_a' %>
           <% else %>
-            <span class="nav none">本業収入</span>
+            <span class="media_link_a none start">本業収入</span>
           <% end %>
 
           <% if logged_in? %>
             <%= link_to '副業収入', incomes_path(is_side_business: true), class: 'media_link_a'%>
           <% else %>
-            <span class="nav none">副業収入</span>
+            <span class="media_link_a none start">副業収入</span>
           <% end %>
 
           <% if logged_in? %>
             <%= link_to '経費', expenses_path, class: 'media_link_a end'%>
           <% else %>
-            <span class="nav none end">経費</span>
+            <span class="media_link_a none start end">経費</span>
           <% end %>
 
           <% if logged_in? %>
-            <%= link_to suppliers_path(is_side_business: false), class: 'media_link_a setting_link' do %>
+            <%= link_to suppliers_path(is_side_business: false), class: 'media_link_a setting_link', style: 'pointer-events: none;' do %>
               <i class="fas fa-cog"></i>
               <p class="sign_in_out">設定</p>
             <% end %>
           <% else %>
-            <i class="fas fa-cog none"></i>
+            <%= link_to "#", class: 'media_link_a none setting_link' do %>
+              <i class="fas fa-cog"></i>
+              <p class="sign_in_out">設定</p>
+            <% end %>
           <% end %>
 
           <% if logged_in? %>
-            <%= button_to logout_path, method: :delete, class: 'log_in_out_btn'  do %>
+            <%= button_to logout_path, method: :delete, class: 'log_in_out_btn' do %>
               <i class="fas fa-sign-out-alt"></i>
               <p class="sign_in_out">ログアウト</p>
             <% end %>
