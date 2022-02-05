@@ -1,8 +1,14 @@
 
 $(function(){
   $(".popup_help").mouseover(function() {
+    var window_w = window.innerWidth;
     var marginTop = 0;
-    var marginLeft = -110;
+    if(window_w <= 540){
+      var marginLeft = -110;
+    }else{
+      var marginLeft = 35;
+    }
+    
     var speed = 130;
     var popupObj = $(".popup_help_window");
 
@@ -28,8 +34,13 @@ $(function(){
 
 $(function(){
   $(".popup_help").mouseover(function() {
+    var window_w = window.innerWidth;
     var marginTop = 0;
-    var marginLeft = -110;
+    if(window_w <= 540){
+      var marginLeft = -110;
+    }else{
+      var marginLeft = 35;
+    }
     var speed = 130;
     var popupObj = $(".popup_help_window");
 
